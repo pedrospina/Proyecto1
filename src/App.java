@@ -3,45 +3,22 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
    
-        //Descripcion del planeta
-
-        // Una vez seleccionado el planeta, el sistema debe mostrar información básica, como la distancia en millones de kilómetros y una breve descripción. 
-    
-    
-        // 2. Gestión de la Nave Espacial 
-        // o Seleccionar una nave para el viaje: El sistema ofrecerá al usuario una lista 
-        // de naves espaciales, cada una con características básicas, como la velocidad 
-        // máxima y la capacidad de pasajeros.
-        
-        // Ingresar la cantidad de pasajeros: El usuario deberá especificar la cantidad 
-        // de pasajeros que viajarán. El sistema solo verificará que se ingrese un valor 
-        // positivo, pero no limitará la cantidad máxima.
-        //  Cálculo de la duración del viaje: Basado en la velocidad de la nave y la 
-        // distancia al planeta
-
-        // 1. Scanner (obvio)
-        // 2. Int option (para el menú)
-        // 3. Boolean error (para el manejo de errores)
-        // 4. String errorMessage (para el mensaje de error)
-
-
-        // 4. Interacción con el Usuario 
-        // o Menú de opciones: El sistema debe proporcionar un menú interactivo en 
-        // consola que permita al usuario elegir entre las siguientes opciones: 
-        // Seleccionar un planeta de destino.
-        //  Seleccionar una nave espacial.
-        //  Iniciar la simulación del viaje. 
-        // Salir del programa. 
         var scanner = new Scanner(System.in);
         showMenu(scanner);
         scanner.close();
-    
-   
-        // Ingresar el planeta de destino
-  
+        boolean error = false ;
+        String errorMsg;
+        String planets = "3";
+        float planetDistance; //3
+        String planetDescription = "3";
+        int destinationPlanet;
+        String spaceShips = "3";
+        float spaceShipsMaxVel;
+        int spaceShipsMaxCapacity;
+        int spaceShipsCapacity;
+        float travelDuration;
+        int travelProgress;
 
-
-        // Ingresar el numero de pasajeros 
         System.out.println("Por favor ingrese el destino del viaje: ");
 //        var pasajeros = scanner.nextLine();
       
@@ -55,7 +32,7 @@ public class App {
             System.out.println("------------------------------------------------- ");
             System.out.print(  "A que destino desea realizar el viaje: ");
             System.out.println("Opciones Mercurio, Venus, Marte, Júpiter, Saturno");
-
+        // Ingresar el planeta de destino
             System.out.println("1. Mercurio ");
             System.out.println("2. Venus");
             System.out.println("3. Marte ");
@@ -105,7 +82,7 @@ public class App {
       scanner.nextLine();
 }
 private static void NumberPassengers() {
-
+ // Ingresar el numero de pasajeros 
   Scanner scanner = new Scanner(System.in);
   System.out.println("Introduce el numero de pasajeros para el viaje: ");
         
@@ -125,8 +102,28 @@ private static void NumberPassengers() {
                   
               }
           }
-      }
+               }
       scanner.close();
+                                    }
+
+private static void menuDestinationPlanet(){
+
+
+}
+
+  private static void menuSpaceshipManagement()  {
+
+
+  }
+
+  private static void calTravelDuration(float scanner){
+    
+
+  }
+
+  private static void calTravelProgress(float scanner){
+    
+
   }
 }
 
