@@ -302,6 +302,7 @@ public class App {
 
          String tiempo;
 
+         var distancia = 0;
          // Cambios
     }
 
