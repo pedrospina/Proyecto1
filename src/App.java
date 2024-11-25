@@ -302,13 +302,10 @@ public class App {
 
          String tiempo;
 
+         var distancia = 0;
          // Cambios
 
-
-if (tiempo < 0) {
-    
-}
-
+         // Otro comentario
     }
 
     private static void calTravelProgress(float scanner) {
