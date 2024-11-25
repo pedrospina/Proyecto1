@@ -303,6 +303,12 @@ public class App {
          String tiempo;
 
          // Cambios
+
+
+if (tiempo < 0) {
+    
+}
+
     }
 
     private static void calTravelProgress(float scanner) {
