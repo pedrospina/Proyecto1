@@ -23,6 +23,10 @@ public class App {
         // var pasajeros = scanner.nextLine();
 
         // System.out.println(destino);
+        // Seleccionar un planeta de destino.
+        // Seleccionar una nave espacial.
+        // Iniciar la simulación del viaje. 
+        // Salir del programa. 
     }
 
     private static void showMenu(Scanner scanner) {
