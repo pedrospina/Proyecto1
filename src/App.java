@@ -299,6 +299,10 @@ public class App {
 
     private static void calTravelDuration(float scanner) {
 
+
+         String tiempo;
+
+         // Cambios
     }
 
     private static void calTravelProgress(float scanner) {
