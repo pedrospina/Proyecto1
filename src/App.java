@@ -304,6 +304,8 @@ public class App {
 
          var distancia = 0;
          // Cambios
+
+         // Otro comentario
     }
 
     private static void calTravelProgress(float scanner) {
