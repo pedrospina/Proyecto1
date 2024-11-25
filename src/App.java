@@ -176,11 +176,11 @@ public class App {
     // nave seleccionada
     private static String[] menuSpaceShip() {
         String[] spaceShips = { "Red dwarf", "Discovery", "Millennium falcon" };
-        int selection;
+        int selection = -1;
         String[] selectedSpaceShip = null;
         String[] options = new String[(spaceShips.length + 1)];
 
-        while (selectedSpaceShip == null) {
+        while (selectedSpaceShip == null && selection != 0) {
 
             for (var i = 0; i < spaceShips.length; i++) {
                 options[i] = spaceShips[i];
