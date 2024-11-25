@@ -1,4 +1,6 @@
+import java.util.Random;
 import java.util.Scanner;
+import java.util.Random;
 
 public class App {
 
@@ -43,6 +45,7 @@ public class App {
                 // El programa en su curso normal nunca deberia llegar aca
                 default:
                     System.out.println("Como rayos llegaste aqui?");
+                    // Con fé XD
                     break;
             }
         }
@@ -295,23 +298,48 @@ public class App {
 
         // Retorna la información de la nave seleccionada
         return selectedSpaceShipInfo;
+        
     }
 
     private static void calTravelDuration(float scanner) {
 
+        generarEvento();
+  
+    }
 
-         String tiempo;
+    /**
+     * @param scanner
+     */
+    private static void calTravelProgress() {
 
-         // Cambios
+        generarEvento();
 
-
-if (tiempo < 0) {
+    }
+        
+        public void generarEvento(String[] selectedSpaceShip, int indice ) {
+        
+            System.out.println("Evento para la nave " + selectedSpaceShip + ": " + EventoAleatorio);
+        }
     
-}
+        private static final String[] EventoAleatorio = {
+            "navegación exitosa",
+            "falla en el sistema",
+            "encuentro con un asteroide",
+            "avistamiento de una nueva estrella",
+            "fuga de combustible",
+            "mantenimiento programado",
+            "comunicación con otra nave",
+            "anomalía en el espacio-tiempo"
+        };
+        
+        private static final Random random = new Random();
+    
+        public static String generarEvento() {
+            int indice = random.nextInt(EventoAleatorio.length);
+            return EventoAleatorio[indice];
+        }  
+
 
     }
 
-    private static void calTravelProgress(float scanner) {
 
-    }
-}
