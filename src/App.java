@@ -22,12 +22,20 @@ public class App {
         String[] selectedSpaceShip = { "" };
 
         // Duración del viaje calculada a partir del planeta y nave seleccionados
-        double travelDuration = 0d;
+        var travelDuration = 0d;
+
+        var errorMsg = "";
 
         while (true) {
             int option;
 
-            option = mainMenu(destinationPlanet[0], selectedSpaceShip, travelDuration);
+            // Validación de si hay una nave seleccionada y un planeta seleccionado para
+            // calcular la duración del viaje
+            if (!destinationPlanet[0].isBlank() && !selectedSpaceShip[0].isBlank()) {
+                travelDuration = calTravelDuration(destinationPlanet[1], selectedSpaceShip[1]);
+            }
+
+            option = mainMenu(destinationPlanet[0], selectedSpaceShip, travelDuration, errorMsg);
 
             switch (option) {
 
@@ -40,22 +48,36 @@ public class App {
                 // Opcion 1 - Seleccionar planeta de destino
                 case 1:
                     destinationPlanet = menuDestinationPlanet(destinationPlanet);
-
-                    // Validación de si hay una nave seleccionada y un planeta seleccionado para
-                    // calcular la duración del viaje
-                    if (!destinationPlanet[0].isBlank() && !selectedSpaceShip[0].isBlank()) {
-                        travelDuration = calTravelDuration(destinationPlanet[1], selectedSpaceShip[1]);
-                    }
+                    errorMsg = "";
                     break;
 
                 // Opcion 2 - Seleccionar nave
                 case 2:
                     selectedSpaceShip = menuSpaceShip(selectedSpaceShip);
+                    errorMsg = "";
+                    break;
+
+                // Opcion 3 - Iniciar viaje
+                case 3:
 
                     // Validación de si hay una nave seleccionada y un planeta seleccionado para
-                    // calcular la duración del viaje
+                    // poder iniciar el viaje
                     if (!destinationPlanet[0].isBlank() && !selectedSpaceShip[0].isBlank()) {
-                        travelDuration = calTravelDuration(destinationPlanet[1], selectedSpaceShip[1]);
+                        calTravelProgress(destinationPlanet, selectedSpaceShip);
+                        errorMsg = "";
+                    } else if (!destinationPlanet[0].isBlank()) {
+
+                        errorMsg = String.format(
+                                "%1$sError: Please select a spaceship before starting the simulation.%2$s\n",
+                                RED, WHITE);
+                    } else if (!selectedSpaceShip[0].isBlank()) {
+                        errorMsg = String.format(
+                                "%1$sError: Please select a destination planet before starting the simulation.%2$s\n",
+                                RED, WHITE);
+                    } else {
+                        errorMsg = String.format(
+                                "%1$sError: Please select a destination planet and a spaceship before starting the simulation.%2$s\n",
+                                RED, WHITE);
                     }
                     break;
                 case 3:
@@ -88,13 +110,16 @@ public class App {
     // Metodo que crea el menu al pasarle un array de opciones y devuelve el valor
     // seleccionado una vez verificado
     private static int showMenu(String[] options) {
+        return showMenu(options, "");
+    }
+
+    private static int showMenu(String[] options, String errorMsg) {
         var optionsTemp = "";
         var nOptions = options.length;
         var i = 0;
         var selectionTemp = 0;
         var selection = 0;
         var error = true;
-        var errorMsg = "";
 
         while (error == true) {
             optionsTemp = "";
@@ -152,7 +177,8 @@ public class App {
     }
 
     // Metodo que crea el menu principal y retorna la opcion seleccionada
-    private static int mainMenu(String destinationPlanet, String[] selectedSpaceShip, double travelDuration) {
+    private static int mainMenu(String destinationPlanet, String[] selectedSpaceShip, double travelDuration,
+            String errorMsg) {
 
         // Guarda la selección del usuario para posteriormente retornarla.
         int selection;
@@ -184,7 +210,7 @@ public class App {
         }
 
         // Se crea y imprime el menu
-        selection = showMenu(options);
+        selection = showMenu(options, errorMsg);
 
         return selection;
     }
@@ -396,9 +422,7 @@ public class App {
         return travelDuration;
     }
 
-    private static void calTravelProgress(String[] selectedSpaceShip, String[] destinationPlanetInfo, String[] spaceShipsMaxVel) {
-
-        
+    private static void calTravelProgress(String[] destinationPlanet, String[] selectedSpaceShip) {
 
         var nave = selectedSpaceShip[0];
         // var selectedSpaceShip = "Discovery";
