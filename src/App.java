@@ -19,7 +19,7 @@ public class App {
         String[] destinationPlanet = {};
 
         // Información de la nave seleccionada
-        String[] selectedSpaceShip = {};
+        String[] selectedSpaceShip = { "" };
 
         // Duración del viaje calculada a partir del planeta y nave seleccionados
         double travelDuration = 0d;
@@ -30,13 +30,13 @@ public class App {
             // Validación de si hay un planeta seleccionado o una nave seleccionada para
             // mostrar en el menu principal
             if (destinationPlanet.length != 0 && selectedSpaceShip.length != 0) {
-                option = mainMenu(destinationPlanet[0], selectedSpaceShip[0], travelDuration);
+                option = mainMenu(destinationPlanet[0], selectedSpaceShip, travelDuration);
             } else if (destinationPlanet.length != 0) {
-                option = mainMenu(destinationPlanet[0], "", 0d);
+                option = mainMenu(destinationPlanet[0], selectedSpaceShip, 0d);
             } else if (selectedSpaceShip.length != 0) {
-                option = mainMenu("", selectedSpaceShip[0], 0d);
+                option = mainMenu("", selectedSpaceShip, 0d);
             } else {
-                option = mainMenu("", "", 0d);
+                option = mainMenu("", selectedSpaceShip, 0d);
             }
 
             switch (option) {
@@ -152,7 +152,7 @@ public class App {
     }
 
     // Metodo que crea el menu principal y retorna la opcion seleccionada
-    private static int mainMenu(String destinationPlanet, String selectedSpaceShip, double travelDuration) {
+    private static int mainMenu(String destinationPlanet, String[] selectedSpaceShip, double travelDuration) {
 
         // Guarda la selección del usuario para posteriormente retornarla.
         int selection;
@@ -169,14 +169,17 @@ public class App {
             options[0] = options[0].concat(String.format("%1$s (%2$s)%3$s", BLUE, destinationPlanet, WHITE));
         }
 
-        // Valida si hay una nave seleccionada para mostrar el nombre de la nave.
-        if (!selectedSpaceShip.isBlank()) {
-            options[1] = options[1].concat(String.format("%1$s (%2$s)%3$s", BLUE, selectedSpaceShip, WHITE));
+        // Valida si hay una nave seleccionada para mostrar el nombre de la nave y el
+        // numero de pasajeros.
+        if (!selectedSpaceShip[0].isBlank()) {
+            options[1] = options[1]
+                    .concat(String.format("%1$s (%2$s: %3$,d Passengers)%4$s", BLUE, selectedSpaceShip[0],
+                            Integer.parseInt(selectedSpaceShip[3]), WHITE));
         }
 
         // Valida si hay un planeta y una nave seleccionados para mostrar la duracion
         // del viaje en dias.
-        if (!selectedSpaceShip.isBlank() && !destinationPlanet.isBlank()) {
+        if (!selectedSpaceShip[0].isBlank() && !destinationPlanet.isBlank()) {
             options[2] = options[2].concat(String.format("%1$s (%2$,.0f Dias)%3$s", BLUE, travelDuration, WHITE));
         }
 
