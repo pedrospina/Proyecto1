@@ -452,14 +452,10 @@ public class App {
             "anomalía en el espacio-tiempo"
     };
 
-
-    }
-
     private static final Random random = new Random();
 
     public static String generarEvento() {
         int indice = random.nextInt(EventoAleatorio.length);
         return EventoAleatorio[indice];
     }
-
 }
