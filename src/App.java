@@ -25,7 +25,7 @@ public class App {
         var travelDuration = 0d;
 
         var errorMsg = "";
-
+        
         while (true) {
             int option;
 
@@ -410,7 +410,9 @@ public class App {
         // var selectedSpaceShip = "Discovery";
         // Duración del viaje
         // == spaceShipsMaxVel[1] & spaceShipsMaxVel == ""
-
+       // String[] number = { "10 20 30 40 50 60 70 80 90 "};
+    
+        int number = random.nextInt(100);
         System.out.println("Comienza el viaje a " + destinationPlanet[0]);
         if (nave.equals("Millennium falcon")) {
             // Nave 1
@@ -420,13 +422,14 @@ public class App {
             for (int i = 0; i <= 100; i++) {
 
                 System.out.print(i + " ");
-                if (EventoAleatorio.length != 0) {
-                    System.out.println("Evento aleatorio" + generarEvento())
+                if (number == i) {
+                    System.out.println(" ");
+                    System.out.println("Evento aleatorio "+ generarEvento());
+                    System.out.println(" ");
                 }
 
                 if (i == 50) {
                     System.out.println(" ");
-                    ;
                     System.out.println("¡La nave esta en la mitad del viaje!");
                     System.out.println(" ");
                 }
@@ -445,7 +448,11 @@ public class App {
             for (int i = 0; i <= 100; i++) {
 
                 System.out.print(i + " ");
-
+                if (number == i) {
+                    System.out.println(" ");
+                    System.out.println("Evento aleatorio "+ generarEvento());
+                    System.out.println(" ");
+                }
                 if (i == 50) {
                     System.out.println(" ");
                     System.out.println("¡La nave esta en la mitad del viaje!");
@@ -456,6 +463,7 @@ public class App {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                
             }
         } else if (nave.equals("Discovery")) {
             // Nave 3
@@ -465,7 +473,11 @@ public class App {
             for (int i = 0; i <= 100; i++) {
 
                 System.out.print(i + " ");
-
+                if (number == i) {
+                    System.out.println(" ");
+                    System.out.println("Evento aleatorio " + generarEvento());
+                    System.out.println(" ");
+                }
                 if (i == 50) {
                     System.out.println(" ");
                     System.out.println("¡La nave esta en la mitad del viaje!");
@@ -477,15 +489,19 @@ public class App {
                     e.printStackTrace();
                 }
             }
+       
         }
-        System.out.println("ha finalizado el viaje al planeta " + destinationPlanet[0]);
+        System.out.println(" ");
+        System.out.println("Ha finalizado el viaje al planeta " + destinationPlanet[0]);
+        System.out.println("La nave utilizada fue: "+ selectedSpaceShip[0]);
+        System.out.println("El numero de pasajeros en el viaje fue: " + selectedSpaceShip[2]);
         // do {
         // } while (nave.equals("Millennium falcon") || (nave.equals("Discovery")) ||
         // (nave.equals("Red dwarf")));
     }
 
     public void generarEvento(String[] selectedSpaceShip, int indice) {
-
+            // Generar evento aleatorio
         System.out.println("Evento aleatorio para la nave " + selectedSpaceShip + ": " + EventoAleatorio);
     }
 
