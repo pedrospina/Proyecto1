@@ -96,7 +96,8 @@ public class App {
                 }
                     break;
               
-    
+                
+
                 // El programa en su curso normal nunca deberia llegar aca
                 default:
                     System.out.println("Como rayos llegaste aqui?");
@@ -494,8 +495,6 @@ public class App {
                 }
             }
         
-       // do {
-       // } while (nave.equals("Millennium falcon") || (nave.equals("Discovery")) || (nave.equals("Red dwarf")));
     }
 
     public void generarEvento(String[] selectedSpaceShip, int indice) {
