@@ -69,6 +69,11 @@ public class App {
                     }
                     break;
                 case 3:
+                    System.out.println("Empieza el viaje");
+
+                    calTravelProgress(selectedSpaceShip, selectedSpaceShip);
+                    generarEvento();
+                    System.out.println("Ha finalizado el viaje");
                     break;
 
                 // El programa en su curso normal nunca deberia llegar aca
@@ -368,6 +373,7 @@ public class App {
         selectedSpaceShip = tempSelectedSpaceShip;
 
         return selectedSpaceShip;
+
     }
 
     // Calcula la duracion del viaje en dias al recibir la distancia del planeta
@@ -385,15 +391,48 @@ public class App {
         travelDuration = tempPlanetDistance / tempSpaceShipMaxVel;
 
         return travelDuration;
-
     }
 
-    /**
-     * @param scanner
-     */
-    private static void calTravelProgress() {
+    private static void calTravelProgress(String[] selectedSpaceShip, String[] destinationPlanetInfo) {
 
         generarEvento();
+
+        var nave = selectedSpaceShip;
+        // var selectedSpaceShip = "Discovery";
+
+        do {
+            if (nave == selectedSpaceShip) {
+                // Nave 1
+                for (int i = 100; i >= 0; i--) {
+                    System.out.println(i);
+                    try {
+                        Thread.sleep(200); // Pausa de 1 segundo (1000 milisegundos)
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else if (nave == selectedSpaceShip) {
+                // Nave 2
+                for (int i = 100; i >= 0; i--) {
+                    System.out.println(i);
+                    try {
+                        Thread.sleep(500); // Pausa de 1 segundo (1000 milisegundos)
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else if (nave == selectedSpaceShip) {
+                // Nave 3
+                for (int i = 100; i >= 0; i--) {
+                    System.out.println(i);
+                    try {
+                        Thread.sleep(1000); // Pausa de 1 segundo (1000 milisegundos)
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } while (selectedSpaceShip != null && destinationPlanetInfo != null);
 
     }
 
@@ -412,6 +451,9 @@ public class App {
             "comunicación con otra nave",
             "anomalía en el espacio-tiempo"
     };
+
+
+    }
 
     private static final Random random = new Random();
 
