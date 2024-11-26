@@ -63,7 +63,7 @@ public class App {
                     // Validación de si hay una nave seleccionada y un planeta seleccionado para
                     // poder iniciar el viaje
                     if (!destinationPlanet[0].isBlank() && !selectedSpaceShip[0].isBlank()) {
-                        calTravelProgress(destinationPlanet, selectedSpaceShip);
+                        calTravelProgress(destinationPlanet, selectedSpaceShip, travelDuration);
                         errorMsg = "";
                     } else if (!destinationPlanet[0].isBlank()) {
                         errorMsg = String.format(
@@ -404,8 +404,22 @@ public class App {
         return travelDuration;
     }
 
-    private static void calTravelProgress(String[] destinationPlanet, String[] selectedSpaceShip) {
+    private static void calTravelProgress(String[] destinationPlanet, String[] selectedSpaceShip,
+            double travelDuration) {
 
+        var spaceShipVel = Double.parseDouble(selectedSpaceShip[1]);
+        var destinationPlanetDistance = Double.parseDouble(destinationPlanet[1]) * 1000000;
+        var currentDistance = spaceShipVel * 24;
+
+        var porcentage = (currentDistance / destinationPlanetDistance) * 100;
+        var temp = 0d;
+        var days = 0;
+
+        System.out.printf(
+                "=====================================================\n"
+                        + "%1$sStarting the travel from Earth to %2$s.%3$s\n",
+                GREEN, destinationPlanet[0], WHITE);
+/*
         var nave = selectedSpaceShip[0];
         // var selectedSpaceShip = "Discovery";
         // Duración del viaje
@@ -427,13 +441,23 @@ public class App {
                     System.out.println("Evento aleatorio "+ generarEvento());
                     System.out.println(" ");
                 }
+*/
 
-                if (i == 50) {
-                    System.out.println(" ");
-                    System.out.println("¡La nave esta en la mitad del viaje!");
-                    System.out.println(" ");
-                }
+        while (days <= travelDuration) {
+            System.out.printf("%1$sEstimated travel duration: %2$,.0f Dias.%4$s(%3$.0f%%)\r",
+                    BLUE, travelDuration - days, temp, WHITE);
+          
+            temp = temp + porcentage;
+            days = days + 1;
 
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+/*
                 try {
                     Thread.sleep(200); // Pausa de 1 segundo (200 milisegundos)
                 } catch (InterruptedException e) {
@@ -491,6 +515,7 @@ public class App {
             }
        
         }
+
         System.out.println(" ");
         System.out.println("Ha finalizado el viaje al planeta " + destinationPlanet[0]);
         System.out.println("La nave utilizada fue: "+ selectedSpaceShip[0]);
@@ -505,21 +530,104 @@ public class App {
         System.out.println("Evento aleatorio para la nave " + selectedSpaceShip + ": " + EventoAleatorio);
     }
 
-    private static final String[] EventoAleatorio = {
-            "navegación exitosa",
-            "falla en el sistema",
-            "encuentro con un asteroide",
-            "avistamiento de una nueva estrella",
-            "fuga de combustible",
-            "mantenimiento programado",
-            "comunicación con otra nave",
-            "anomalía en el espacio-tiempo"
-    };
+        input.nextLine();
 
-    private static final Random random = new Random();
-
-    public static String generarEvento() {
-        int indice = random.nextInt(EventoAleatorio.length);
-        return EventoAleatorio[indice];
-    }
+        /*
+         * System.out.println("Comienza el viaje a " + destinationPlanet[0]);
+         * if (selectedSpaceShip[0].equals("Millennium falcon")) {
+         * // Nave 1
+         * System.out.println(" ");
+         * System.out.println("La Velocidad es: Rapida");
+         * System.out.println(" ");
+         * for (int i = 0; i <= 100; i++) {
+         * 
+         * System.out.print(i + " ");
+         * if (EventoAleatorio.length != 0) {
+         * System.out.println(generarEvento());
+         * }
+         * 
+         * if (i == 50) {
+         * System.out.println(" ");
+         * System.out.println("¡La nave esta en la mitad del viaje!");
+         * System.out.println(" ");
+         * }
+         * 
+         * try {
+         * Thread.sleep(200); // Pausa de 1 segundo (200 milisegundos)
+         * } catch (InterruptedException e) {
+         * e.printStackTrace();
+         * }
+         * }
+         * } else if (selectedSpaceShip[0].equals("Red dwarf")) {
+         * // Nave 2
+         * System.out.println(" ");
+         * System.out.println("La Velocidad es: Normal");
+         * System.out.println(" ");
+         * for (int i = 0; i <= 100; i++) {
+         * 
+         * System.out.print(i + " ");
+         * 
+         * if (i == 50) {
+         * System.out.println(" ");
+         * System.out.println("¡La nave esta en la mitad del viaje!");
+         * System.out.println(" ");
+         * }
+         * try {
+         * Thread.sleep(500); // Pausa de 1 segundo (500 milisegundos)
+         * } catch (InterruptedException e) {
+         * e.printStackTrace();
+         * }
+         * }
+         * } else if (selectedSpaceShip[0].equals("Discovery")) {
+         * // Nave 3
+         * System.out.println(" ");
+         * System.out.println("La Velocidad es: Lenta");
+         * System.out.println(" ");
+         * for (int i = 0; i <= 100; i++) {
+         * 
+         * System.out.print(i + " ");
+         * 
+         * if (i == 50) {
+         * System.out.println(" ");
+         * System.out.println("¡La nave esta en la mitad del viaje!");
+         * System.out.println(" ");
+         * }
+         * try {
+         * Thread.sleep(1000); // Pausa de 1 segundo (1000 milisegundos)
+         * } catch (InterruptedException e) {
+         * e.printStackTrace();
+         * }
+         * }
+         * }
+         * System.out.println("ha finalizado el viaje al planeta " +
+         * destinationPlanet[0]);
+         * // do {
+         * // } while (nave.equals("Millennium falcon") || (nave.equals("Discovery")) ||
+         * // (nave.equals("Red dwarf")));
+         * }
+         * 
+         * public void generarEvento(String[] selectedSpaceShip, int indice) {
+         * 
+         * System.out.println("Evento aleatorio para la nave " + selectedSpaceShip +
+         * ": " + EventoAleatorio);
+         * }
+         * 
+         * private static final String[] EventoAleatorio = {
+         * "navegación exitosa",
+         * "falla en el sistema",
+         * "encuentro con un asteroide",
+         * "avistamiento de una nueva estrella",
+         * "fuga de combustible",
+         * "mantenimiento programado",
+         * "comunicación con otra nave",
+         * "anomalía en el espacio-tiempo"
+         * };
+         * 
+         * private static final Random random = new Random();
+         * 
+         * public static String generarEvento() {
+         * int indice = random.nextInt(EventoAleatorio.length);
+         * return EventoAleatorio[indice];
+         * }
+         */
 }
