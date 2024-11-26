@@ -64,11 +64,14 @@ public class App {
                 // selectedSpaceShip = menuSpaceShip(selectedSpaceShip);
 
                 if (destinationPlanet.length != 0 && selectedSpaceShip.length != 0) {
+                    System.out.println(" ");
                     System.out.println("Empieza el viaje");
-
+                    System.out.println(" ");
                     calTravelProgress(selectedSpaceShip, selectedSpaceShip, selectedSpaceShip);
+                    System.out.println(" ");
                     generarEvento();
                     System.out.println("Ha finalizado el viaje en la nave");
+                    System.out.println(" ");
                 }
                     
                     break;
@@ -402,12 +405,24 @@ public class App {
         // Duración del viaje 
         //== spaceShipsMaxVel[1] & spaceShipsMaxVel == ""
        
+        
+            
+    
             if (nave.equals("Millennium falcon") ) {
                 // Nave 1
-                System.out.println("Velocidad Rapida");
+                System.out.println(" ");
+                System.out.println("La Velocidad es: Rapida");
+                System.out.println(" ");
                 for (int i = 0; i <= 100; i++) {
-                 
+
                     System.out.print(i + " ");
+                  
+                    if (i == 50) {
+                        System.out.println(" ");
+                        System.out.println("¡La nave esta en la mitad del viaje!");
+                        System.out.println(" ");
+                    }
+
                     try {
                         Thread.sleep(200); // Pausa de 1 segundo (200 milisegundos)
                     } catch (InterruptedException e) {
@@ -416,10 +431,18 @@ public class App {
                 }
             } else if (nave.equals("Red dwarf")) {
                 // Nave 2
-                System.out.println("Velocidad Normal");
+                System.out.println(" ");
+                System.out.println("La Velocidad es: Normal");
+                System.out.println(" ");
                 for (int i = 0; i <= 100; i++) {
-                    
+                   
                     System.out.print(i + " ");
+                    
+                    if (i == 50) {
+                        System.out.println(" ");
+                        System.out.println("¡La nave esta en la mitad del viaje!");
+                        System.out.println(" ");
+                    }
                     try {
                         Thread.sleep(500); // Pausa de 1 segundo (500 milisegundos)
                     } catch (InterruptedException e) {
@@ -428,10 +451,18 @@ public class App {
                 }
             } else if (nave.equals("Discovery")) {
                 // Nave 3
-                System.out.println("Velocidad Lenta");
+                System.out.println(" ");
+                System.out.println("La Velocidad es: Lenta");
+                System.out.println(" ");
                 for (int i = 0; i <= 100; i++) {
                     
                     System.out.print(i + " ");
+                   
+                    if (i == 50) {
+                        System.out.println(" ");
+                        System.out.println("¡La nave esta en la mitad del viaje!");
+                        System.out.println(" ");
+                    }
                     try {
                         Thread.sleep(1000); // Pausa de 1 segundo (1000 milisegundos)
                     } catch (InterruptedException e) {
@@ -440,12 +471,13 @@ public class App {
                 }
             }
         
-
+       // do {
+       // } while (nave.equals("Millennium falcon") || (nave.equals("Discovery")) || (nave.equals("Red dwarf")));
     }
 
     public void generarEvento(String[] selectedSpaceShip, int indice) {
 
-        System.out.println("Evento para la nave " + selectedSpaceShip + ": " + EventoAleatorio);
+        System.out.println("Evento aleatorio para la nave " + selectedSpaceShip + ": " + EventoAleatorio);
     }
 
     private static final String[] EventoAleatorio = {
