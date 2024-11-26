@@ -421,11 +421,12 @@ public class App {
 
                 System.out.print(i + " ");
                 if (EventoAleatorio.length != 0) {
-                    System.out.println(generarEvento());
+                    System.out.println("Evento aleatorio" + generarEvento())
                 }
 
                 if (i == 50) {
                     System.out.println(" ");
+                    ;
                     System.out.println("¡La nave esta en la mitad del viaje!");
                     System.out.println(" ");
                 }
