@@ -20,17 +20,21 @@ public class App {
         // Información de la nave seleccionada
         String[] selectedSpaceShip = {};
 
+        double travelDuration = 0d;
+
         while (true) {
             int option;
 
+            // Validación de si hay un planeta seleccionado o una nave seleccionada para
+            // mostrar en el menu principal
             if (destinationPlanet.length != 0 && selectedSpaceShip.length != 0) {
-                option = mainMenu(destinationPlanet[0], selectedSpaceShip[0]);
+                option = mainMenu(destinationPlanet[0], selectedSpaceShip[0], travelDuration);
             } else if (destinationPlanet.length != 0) {
-                option = mainMenu(destinationPlanet[0], "");
+                option = mainMenu(destinationPlanet[0], "", 0d);
             } else if (selectedSpaceShip.length != 0) {
-                option = mainMenu("", selectedSpaceShip[0]);
+                option = mainMenu("", selectedSpaceShip[0], 0d);
             } else {
-                option = mainMenu("", "");
+                option = mainMenu("", "", 0d);
             }
 
             switch (option) {
@@ -43,14 +47,14 @@ public class App {
                 case 1:
                     destinationPlanet = menuDestinationPlanet(destinationPlanet);
                     if (selectedSpaceShip.length != 0) {
-                        calTravelDuration(destinationPlanet[1], selectedSpaceShip[1]);
+                        travelDuration = calTravelDuration(destinationPlanet[1], selectedSpaceShip[1]);
                     }
                     break;
                 // Opcion 2 - Seleccionar nave
                 case 2:
                     selectedSpaceShip = menuSpaceShip(selectedSpaceShip);
                     if (destinationPlanet.length != 0 && selectedSpaceShip.length != 0) {
-                        calTravelDuration(destinationPlanet[1], selectedSpaceShip[1]);
+                        travelDuration = calTravelDuration(destinationPlanet[1], selectedSpaceShip[1]);
                     }
                     break;
                 case 3:
@@ -131,7 +135,7 @@ public class App {
     }
 
     // Metodo que crea el menu principal y retorna la opcion seleccionada
-    private static int mainMenu(String destinationPlanet, String selectedSpaceShip) {
+    private static int mainMenu(String destinationPlanet, String selectedSpaceShip, double travelDuration) {
         int selection;
         String[] options = {
                 "Select destination planet",
@@ -139,11 +143,15 @@ public class App {
                 "Start the travel simulation",
                 "Exit the program" };
         if (!destinationPlanet.isBlank()) {
-            options[0] = options[0].concat(" (" + destinationPlanet + ")");
+            options[0] = options[0].concat(String.format("%1$s (%2$s) %3$s", BLUE, destinationPlanet, WHITE));
         }
 
         if (!selectedSpaceShip.isBlank()) {
-            options[1] = options[1].concat(" (" + selectedSpaceShip + ")");
+            options[1] = options[1].concat(String.format("%1$s (%2$s) %3$s", BLUE, selectedSpaceShip, WHITE));
+        }
+
+        if (!selectedSpaceShip.isBlank() && !destinationPlanet.isBlank()) {
+            options[2] = options[2].concat(String.format("%1$s (%2$,.0f Dias) %3$s", BLUE, travelDuration, WHITE));
         }
 
         selection = showMenu(options);
@@ -190,9 +198,11 @@ public class App {
         destinationPlanetInfo[0] = planets[option - 1];
         destinationPlanetInfo[1] = planetDistance[option - 1];
 
+        int temp = Integer.parseInt(destinationPlanetInfo[1]);
+
         System.out.printf(
-                "%4$sThe selected planet is:%6$s %1$s located approximately %2$s million kilometers from Earth %3$s\n%5$sPress enter to continue.%6$s",
-                destinationPlanetInfo[0], destinationPlanetInfo[1],
+                "%4$sThe selected planet is:%6$s %1$s located approximately %2$,d million kilometers from Earth %3$s\n%5$sPress enter to continue.%6$s",
+                destinationPlanetInfo[0], temp,
                 planetDescription[option - 1], GREEN, BLUE, WHITE);
         input.nextLine();
 
@@ -206,8 +216,7 @@ public class App {
         int selection = -1;
         String[] options = new String[(spaceShips.length + 1)];
 
-        while (selection != 0) {
-
+        do {
             for (var i = 0; i < spaceShips.length; i++) {
                 options[i] = spaceShips[i];
             }
@@ -218,7 +227,8 @@ public class App {
             if (selection != 0) {
                 selectedSpaceShip = selectedSpaceShip(selection, spaceShips, selectedSpaceShip);
             }
-        }
+        } while (selection != 0 && selectedSpaceShip.length == 0);
+
         return selectedSpaceShip;
     }
 
@@ -260,21 +270,25 @@ public class App {
         var passengersTemp = 0;
 
         // Se guarda toda la información de la nave seleccionada en el array a retornar
-        selectedSpaceShip = new String[7];
-        selectedSpaceShip[0] = spaceShips[option - 1];
-        selectedSpaceShip[1] = spaceShipsMaxVel[option - 1];
-        selectedSpaceShip[2] = spaceShipsMaxCapacity[option - 1];
-        selectedSpaceShip[3] = spaceShipsMaxFuel[option - 1];
-        selectedSpaceShip[4] = spaceShipsMaxOxygen[option - 1];
-        selectedSpaceShip[5] = spaceShipsMaxWeight[option - 1];
+        String[] tempSelectedSpaceShip = new String[7];
+        tempSelectedSpaceShip[0] = spaceShips[option - 1];
+        tempSelectedSpaceShip[1] = spaceShipsMaxVel[option - 1];
+        tempSelectedSpaceShip[2] = spaceShipsMaxCapacity[option - 1];
+        tempSelectedSpaceShip[3] = spaceShipsMaxFuel[option - 1];
+        tempSelectedSpaceShip[4] = spaceShipsMaxOxygen[option - 1];
+        tempSelectedSpaceShip[5] = spaceShipsMaxWeight[option - 1];
 
         // Imprime por consola la información de la nave seleccionada
+
+        int tempVel = Integer.parseInt(tempSelectedSpaceShip[1]);
+        int tempWeight = Integer.parseInt(tempSelectedSpaceShip[5]);
+
         System.out.printf(
-                "%7$sThe selected spaceship is:%9$s %1$s \n- Velocity: %2$s KM/H\n- Max.Capacity: %3$s Passengers"
-                        + "\n- Max.Fuel: %4$s Tons\n- Max.Oxygen: %5$s KG\n- Max.Weight: %6$s Tons\n"
+                "%7$sThe selected spaceship is:%9$s %1$s \n- Velocity: %2$,d KM/H\n- Max.Capacity: %3$s Passengers"
+                        + "\n- Max.Fuel: %4$s Tons\n- Max.Oxygen: %5$s KG\n- Max.Weight: %6$,d Tons\n"
                         + "%8$sDo you want to select this spaceship(Y/n): %9$s",
-                selectedSpaceShip[0], selectedSpaceShip[1], selectedSpaceShip[2],
-                selectedSpaceShip[3], selectedSpaceShip[4], selectedSpaceShip[5],
+                tempSelectedSpaceShip[0], tempVel, tempSelectedSpaceShip[2],
+                tempSelectedSpaceShip[3], tempSelectedSpaceShip[4], tempWeight,
                 GREEN, BLUE, WHITE);
 
         confirmation = input.nextLine();
@@ -287,7 +301,7 @@ public class App {
 
         System.out.printf(
                 "%2$sSpaceship %1$s successfully selected.%3$s \n",
-                selectedSpaceShip[0], GREEN, WHITE);
+                tempSelectedSpaceShip[0], GREEN, WHITE);
 
         // Se pregunta por el numero de pasajeros a viajar, se valida que sea un numero
         // positivo y en caso de que el numero ingresado supere el maximo permitido por
@@ -299,12 +313,13 @@ public class App {
                 passengersTemp = input.nextInt();
 
                 if (passengersTemp >= 0) {
-                    if (passengersTemp > Integer.parseInt(selectedSpaceShip[2])) {
+                    if (passengersTemp > Integer.parseInt(tempSelectedSpaceShip[2])) {
                         System.out.printf(
                                 "%1$sWarning: Spaceship capacity exceeded."
                                         + "The number of passengers is higher that the recommended limit."
                                         + "\nPlease proceed with caution.%2$s\n",
                                 YELLOW, WHITE);
+                        input.nextLine();
                     }
                     spaceShipsCapacity = String.valueOf(passengersTemp);
                 } else {
@@ -317,7 +332,9 @@ public class App {
         }
 
         // Se guarda el numero de pasajeros en el array a retornar
-        selectedSpaceShip[6] = spaceShipsCapacity;
+        tempSelectedSpaceShip[6] = spaceShipsCapacity;
+
+        selectedSpaceShip = tempSelectedSpaceShip;
 
         // Retorna la información de la nave seleccionada
 
@@ -325,15 +342,17 @@ public class App {
 
     }
 
-    private static int calTravelDuration(String planetDistance, String spaceShipMaxVel) {
-        var travelDuration = 0;
-        var tempPlanetDistance = Integer.parseInt(planetDistance);
-        var tempSpaceShipMaxVel = Integer.parseInt(spaceShipMaxVel);
+    private static double calTravelDuration(String planetDistance, String spaceShipMaxVel) {
+
+        var tempPlanetDistance = Double.parseDouble(planetDistance);
+        var tempSpaceShipMaxVel = Double.parseDouble(spaceShipMaxVel);
+        var travelDuration = 0d;
 
         tempPlanetDistance = tempPlanetDistance * 1000000;
         tempSpaceShipMaxVel = tempSpaceShipMaxVel * 24;
 
         travelDuration = tempPlanetDistance / tempSpaceShipMaxVel;
+
         return travelDuration;
     }
 
@@ -395,6 +414,9 @@ public class App {
             "comunicación con otra nave",
             "anomalía en el espacio-tiempo"
     };
+
+
+    }
 
     private static final Random random = new Random();
 
