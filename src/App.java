@@ -66,7 +66,6 @@ public class App {
                         calTravelProgress(destinationPlanet, selectedSpaceShip);
                         errorMsg = "";
                     } else if (!destinationPlanet[0].isBlank()) {
-
                         errorMsg = String.format(
                                 "%1$sError: Please select a spaceship before starting the simulation.%2$s\n",
                                 RED, WHITE);
@@ -406,11 +405,7 @@ public class App {
     }
 
     private static void calTravelProgress(String[] destinationPlanet, String[] selectedSpaceShip) {
-
-        var nave = selectedSpaceShip[0];
-        // var selectedSpaceShip = "Discovery";
-        // Duración del viaje
-        // == spaceShipsMaxVel[1] & spaceShipsMaxVel == ""
+        var spaceShip = selectedSpaceShip[0];
 
         if (nave.equals("Millennium falcon")) {
             // Nave 1
