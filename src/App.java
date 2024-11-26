@@ -352,7 +352,7 @@ public class App {
 
         travelDuration = tempPlanetDistance / tempSpaceShipMaxVel;
 
-        generarEvento();
+        return travelDuration;
   
     }
 
@@ -388,7 +388,4 @@ public class App {
             return EventoAleatorio[indice];
         }  
 
-        return travelDuration;
     }
-
-
