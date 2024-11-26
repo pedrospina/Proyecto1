@@ -16,7 +16,7 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         // Información del planeta seleccionado
-        String[] destinationPlanet = {};
+        String[] destinationPlanet = { "" };
 
         // Información de la nave seleccionada
         String[] selectedSpaceShip = { "" };
@@ -27,17 +27,7 @@ public class App {
         while (true) {
             int option;
 
-            // Validación de si hay un planeta seleccionado o una nave seleccionada para
-            // mostrar en el menu principal
-            if (destinationPlanet.length != 0 && selectedSpaceShip.length != 0) {
-                option = mainMenu(destinationPlanet[0], selectedSpaceShip, travelDuration);
-            } else if (destinationPlanet.length != 0) {
-                option = mainMenu(destinationPlanet[0], selectedSpaceShip, 0d);
-            } else if (selectedSpaceShip.length != 0) {
-                option = mainMenu("", selectedSpaceShip, 0d);
-            } else {
-                option = mainMenu("", selectedSpaceShip, 0d);
-            }
+            option = mainMenu(destinationPlanet[0], selectedSpaceShip, travelDuration);
 
             switch (option) {
 
@@ -53,7 +43,7 @@ public class App {
 
                     // Validación de si hay una nave seleccionada y un planeta seleccionado para
                     // calcular la duración del viaje
-                    if (destinationPlanet.length != 0 && selectedSpaceShip.length != 0) {
+                    if (!destinationPlanet[0].isBlank() && !selectedSpaceShip[0].isBlank()) {
                         travelDuration = calTravelDuration(destinationPlanet[1], selectedSpaceShip[1]);
                     }
                     break;
@@ -64,7 +54,7 @@ public class App {
 
                     // Validación de si hay una nave seleccionada y un planeta seleccionado para
                     // calcular la duración del viaje
-                    if (destinationPlanet.length != 0 && selectedSpaceShip.length != 0) {
+                    if (!destinationPlanet[0].isBlank() && !selectedSpaceShip[0].isBlank()) {
                         travelDuration = calTravelDuration(destinationPlanet[1], selectedSpaceShip[1]);
                     }
                     break;
@@ -289,7 +279,7 @@ public class App {
                 // Guarda la información de la nave seleccionada para posteriormente retornarla.
                 selectedSpaceShip = selectedSpaceShip(selection, spaceShips, selectedSpaceShip);
             }
-        } while (selection != 0 && selectedSpaceShip.length == 0);
+        } while (selection != 0 && selectedSpaceShip[0].isBlank());
 
         return selectedSpaceShip;
     }
