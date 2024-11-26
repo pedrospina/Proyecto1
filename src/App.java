@@ -1,4 +1,6 @@
+import java.util.Random;
 import java.util.Scanner;
+import java.util.Random;
 
 public class App {
 
@@ -61,6 +63,7 @@ public class App {
                 // El programa en su curso normal nunca deberia llegar aca
                 default:
                     System.out.println("Como rayos llegaste aqui?");
+                    // Con fé XD
                     break;
             }
         }
@@ -330,7 +333,11 @@ public class App {
         selectedSpaceShip = tempSelectedSpaceShip;
 
         // Retorna la información de la nave seleccionada
+
         return selectedSpaceShip;
+        
+        
+
     }
 
     private static double calTravelDuration(String planetDistance, String spaceShipMaxVel) {
@@ -339,15 +346,49 @@ public class App {
         var tempSpaceShipMaxVel = Double.parseDouble(spaceShipMaxVel);
         var travelDuration = 0d;
 
+
         tempPlanetDistance = tempPlanetDistance * 1000000;
         tempSpaceShipMaxVel = tempSpaceShipMaxVel * 24;
 
         travelDuration = tempPlanetDistance / tempSpaceShipMaxVel;
 
+        generarEvento();
+  
+    }
+
+    /**
+     * @param scanner
+     */
+    private static void calTravelProgress() {
+
+        generarEvento();
+
+    }
+        
+        public void generarEvento(String[] selectedSpaceShip, int indice ) {
+        
+            System.out.println("Evento para la nave " + selectedSpaceShip + ": " + EventoAleatorio);
+        }
+    
+        private static final String[] EventoAleatorio = {
+            "navegación exitosa",
+            "falla en el sistema",
+            "encuentro con un asteroide",
+            "avistamiento de una nueva estrella",
+            "fuga de combustible",
+            "mantenimiento programado",
+            "comunicación con otra nave",
+            "anomalía en el espacio-tiempo"
+        };
+        
+        private static final Random random = new Random();
+    
+        public static String generarEvento() {
+            int indice = random.nextInt(EventoAleatorio.length);
+            return EventoAleatorio[indice];
+        }  
+
         return travelDuration;
     }
 
-    private static void calTravelProgress(float scanner) {
 
-    }
-}
