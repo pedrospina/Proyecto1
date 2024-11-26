@@ -79,9 +79,8 @@ public class App {
                                 "%1$sError: Please select a destination planet and a spaceship before starting the simulation.%2$s\n",
                                 RED, WHITE);
                     }
-                    break;
-                case 3:
-                // Opcion 3 - Iniciar viaje        
+
+                    // Opcion 3 - Iniciar viaje        
                 // destinationPlanet = menuDestinationPlanet(destinationPlanet);
                 // selectedSpaceShip = menuSpaceShip(selectedSpaceShip);
 
@@ -89,15 +88,15 @@ public class App {
                     System.out.println(" ");
                     System.out.println("Empieza el viaje");
                     System.out.println(" ");
-                    calTravelProgress(selectedSpaceShip, selectedSpaceShip, selectedSpaceShip);
+                    calTravelProgress(selectedSpaceShip, selectedSpaceShip);
                     System.out.println(" ");
                     generarEvento();
                     System.out.println("Ha finalizado el viaje en la nave");
                     System.out.println(" ");
                 }
-                    
                     break;
-
+              
+    
                 // El programa en su curso normal nunca deberia llegar aca
                 default:
                     System.out.println("Como rayos llegaste aqui?");
