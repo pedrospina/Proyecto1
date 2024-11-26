@@ -59,11 +59,18 @@ public class App {
                     }
                     break;
                 case 3:
+                // Opcion 3 - Iniciar viaje        
+                // destinationPlanet = menuDestinationPlanet(destinationPlanet);
+                // selectedSpaceShip = menuSpaceShip(selectedSpaceShip);
+
+                if (destinationPlanet.length != 0 && selectedSpaceShip.length != 0) {
                     System.out.println("Empieza el viaje");
 
-                    calTravelProgress(selectedSpaceShip, selectedSpaceShip);
+                    calTravelProgress(selectedSpaceShip, selectedSpaceShip, selectedSpaceShip);
                     generarEvento();
-                    System.out.println("Ha finalizado el viaje");
+                    System.out.println("Ha finalizado el viaje en la nave");
+                }
+                    
                     break;
 
                 // El programa en su curso normal nunca deberia llegar aca
@@ -386,38 +393,45 @@ public class App {
         return travelDuration;
     }
 
-    private static void calTravelProgress(String[] selectedSpaceShip, String[] destinationPlanetInfo) {
+    private static void calTravelProgress(String[] selectedSpaceShip, String[] destinationPlanetInfo, String[] spaceShipsMaxVel) {
 
-        generarEvento();
+        
 
-        var nave = selectedSpaceShip;
+        var nave = selectedSpaceShip[0];
         // var selectedSpaceShip = "Discovery";
-
-        do {
-            if (nave == selectedSpaceShip) {
+        // Duración del viaje 
+        //== spaceShipsMaxVel[1] & spaceShipsMaxVel == ""
+       
+            if (nave.equals("Millennium falcon") ) {
                 // Nave 1
-                for (int i = 100; i >= 0; i--) {
-                    System.out.println(i);
+                System.out.println("Velocidad Rapida");
+                for (int i = 0; i <= 100; i++) {
+                 
+                    System.out.print(i + " ");
                     try {
-                        Thread.sleep(200); // Pausa de 1 segundo (1000 milisegundos)
+                        Thread.sleep(200); // Pausa de 1 segundo (200 milisegundos)
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-            } else if (nave == selectedSpaceShip) {
+            } else if (nave.equals("Red dwarf")) {
                 // Nave 2
-                for (int i = 100; i >= 0; i--) {
-                    System.out.println(i);
+                System.out.println("Velocidad Normal");
+                for (int i = 0; i <= 100; i++) {
+                    
+                    System.out.print(i + " ");
                     try {
-                        Thread.sleep(500); // Pausa de 1 segundo (1000 milisegundos)
+                        Thread.sleep(500); // Pausa de 1 segundo (500 milisegundos)
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-            } else if (nave == selectedSpaceShip) {
+            } else if (nave.equals("Discovery")) {
                 // Nave 3
-                for (int i = 100; i >= 0; i--) {
-                    System.out.println(i);
+                System.out.println("Velocidad Lenta");
+                for (int i = 0; i <= 100; i++) {
+                    
+                    System.out.print(i + " ");
                     try {
                         Thread.sleep(1000); // Pausa de 1 segundo (1000 milisegundos)
                     } catch (InterruptedException e) {
@@ -425,7 +439,7 @@ public class App {
                     }
                 }
             }
-        } while (selectedSpaceShip != null && destinationPlanetInfo != null);
+        
 
     }
 
