@@ -1,6 +1,5 @@
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Random;
 
 public class App {
 
@@ -59,6 +58,11 @@ public class App {
                     }
                     break;
                 case 3:
+                    System.out.println("Empieza el viaje");
+
+                    calTravelProgress(selectedSpaceShip, selectedSpaceShip);
+                    generarEvento();
+                    System.out.println("Ha finalizado el viaje");
                     break;
                 // El programa en su curso normal nunca deberia llegar aca
                 default:
@@ -335,8 +339,6 @@ public class App {
         // Retorna la información de la nave seleccionada
 
         return selectedSpaceShip;
-        
-        
 
     }
 
@@ -346,31 +348,63 @@ public class App {
         var tempSpaceShipMaxVel = Double.parseDouble(spaceShipMaxVel);
         var travelDuration = 0d;
 
-
         tempPlanetDistance = tempPlanetDistance * 1000000;
         tempSpaceShipMaxVel = tempSpaceShipMaxVel * 24;
 
         travelDuration = tempPlanetDistance / tempSpaceShipMaxVel;
 
         return travelDuration;
-  
     }
 
-    /**
-     * @param scanner
-     */
-    private static void calTravelProgress() {
+    private static void calTravelProgress(String[] selectedSpaceShip, String[] destinationPlanetInfo) {
 
         generarEvento();
 
+        var nave = selectedSpaceShip;
+        // var selectedSpaceShip = "Discovery";
+
+        do {
+            if (nave == selectedSpaceShip) {
+                // Nave 1
+                for (int i = 100; i >= 0; i--) {
+                    System.out.println(i);
+                    try {
+                        Thread.sleep(200); // Pausa de 1 segundo (1000 milisegundos)
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else if (nave == selectedSpaceShip) {
+                // Nave 2
+                for (int i = 100; i >= 0; i--) {
+                    System.out.println(i);
+                    try {
+                        Thread.sleep(500); // Pausa de 1 segundo (1000 milisegundos)
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else if (nave == selectedSpaceShip) {
+                // Nave 3
+                for (int i = 100; i >= 0; i--) {
+                    System.out.println(i);
+                    try {
+                        Thread.sleep(1000); // Pausa de 1 segundo (1000 milisegundos)
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } while (selectedSpaceShip != null && destinationPlanetInfo != null);
+
     }
-        
-        public void generarEvento(String[] selectedSpaceShip, int indice ) {
-        
-            System.out.println("Evento para la nave " + selectedSpaceShip + ": " + EventoAleatorio);
-        }
-    
-        private static final String[] EventoAleatorio = {
+
+    public void generarEvento(String[] selectedSpaceShip, int indice) {
+
+        System.out.println("Evento para la nave " + selectedSpaceShip + ": " + EventoAleatorio);
+    }
+
+    private static final String[] EventoAleatorio = {
             "navegación exitosa",
             "falla en el sistema",
             "encuentro con un asteroide",
@@ -379,13 +413,17 @@ public class App {
             "mantenimiento programado",
             "comunicación con otra nave",
             "anomalía en el espacio-tiempo"
-        };
-        
-        private static final Random random = new Random();
-    
-        public static String generarEvento() {
-            int indice = random.nextInt(EventoAleatorio.length);
-            return EventoAleatorio[indice];
-        }  
+    };
+
 
     }
+
+    private static final Random random = new Random();
+
+    public static String generarEvento() {
+        int indice = random.nextInt(EventoAleatorio.length);
+        return EventoAleatorio[indice];
+    }
+
+    // return travelDuration;
+}
