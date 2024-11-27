@@ -493,9 +493,6 @@ public class App {
         System.out.println("Ha finalizado el viaje al planeta " + destinationPlanet[0]);
         System.out.println("La nave utilizada fue: " + selectedSpaceShip[0]);
         System.out.println("El numero de pasajeros en el viaje fue: " + selectedSpaceShip[2]);
-        // do {
-        // } while (nave.equals("Millennium falcon") || (nave.equals("Discovery")) ||
-        // (nave.equals("Red dwarf")));
     }
 
     public void generarEvento(String[] selectedSpaceShip, int indice) {
