@@ -1,6 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
+
 public class App {
 
     // Colores para la consola
