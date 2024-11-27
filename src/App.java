@@ -467,6 +467,8 @@ public class App {
         System.out.printf("%1$sEstimated travel duration: %2$.0f Dias.%4$s(%3$d%%): Travel Completed.\r",
                 BLUE, travelDuration - travelDuration, 100, RESET);
         input.nextLine();
+
+        
     }
 
     private static String generateEvent() {
