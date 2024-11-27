@@ -47,7 +47,7 @@ public class App {
 
         // Error menssage to display in the menu
         var errorMsg = "";
-        
+
         while (true) {
             int option;
 
@@ -442,6 +442,7 @@ public class App {
                         + "%1$sStarting the travel from Earth to %2$s.%3$s%n",
                 GREEN, destinationPlanet[0], RESET);
 
+
         while (days <= travelDuration) {
             System.out.printf("%1$sEstimated travel duration: %2$,.0f Dias.%5$s(%3$.2f%%)%4$s\r",
                     BLUE, travelDuration - days, temp, generateEvent(), RESET);
@@ -490,7 +491,7 @@ public class App {
             index = random.nextInt(randomEvent.length);
             event = String.format(": %1$s%n", randomEvent[index]);
 
-            return event;
+          return event;
         } else {
             return event;
         }
