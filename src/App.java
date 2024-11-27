@@ -4,27 +4,49 @@ import java.util.Scanner;
 
 public class App {
 
-    // Colores para la consola
     static final String RED = "\u001B[31m";
     static final String GREEN = "\u001B[32m";
     static final String YELLOW = "\u001B[33m";
     static final String BLUE = "\u001B[34m";
-    static final String WHITE = "\u001B[37m";
+    static final String RESET = "\u001B[0m";
 
-    // Variables estaticas para poder usarlas a lo largo del proyecto
+    // Static variables used throughout the project
     static Scanner input = new Scanner(System.in);
 
+    /**
+     * Calcula la distancia entre dos puntos en un plano cartesiano.
+     *
+     * <p>
+     * Este método utiliza la fórmula de la distancia euclidiana
+     * para determinar la separación entre los puntos (x1, y1) y (x2, y2).
+     * </p>
+     *
+     * @param x1 Coordenada X del primer punto.
+     * @param y1 Coordenada Y del primer punto.
+     * @param x2 Coordenada X del segundo punto.
+     * @param y2 Coordenada Y del segundo punto.
+     * 
+     * @return La distancia euclidiana entre los dos puntos.
+     * 
+     * @throws IllegalArgumentException Si las coordenadas son inválidas.
+     * 
+     * @since 1.0
+     * @see Math#sqrt(double)
+     * @author [Tu Nombre]
+     */
     public static void main(String[] args) throws Exception {
 
-        // Información del planeta seleccionado
+        // Selected planet information
         String[] destinationPlanet = { "" };
 
-        // Información de la nave seleccionada
+        // Selected spaceship information
         String[] selectedSpaceShip = { "" };
 
-        // Duración del viaje calculada a partir del planeta y nave seleccionados
+        // Travel duration calculated based on the selected spaceship's speed and the
+        // distance to the selected planet
         var travelDuration = 0d;
 
+        // Error menssage to display in the menu
         var errorMsg = "";
 
         while (true) {
@@ -42,7 +64,7 @@ public class App {
 
                 // Opcion 0 - Salir del programa
                 case 0:
-                    System.out.printf("%1$sExiting the program...%2$s", BLUE, WHITE);
+                    System.out.printf("%1$sExiting the program...%2$s", BLUE, RESET);
                     System.exit(0);
                     break;
 
@@ -68,16 +90,16 @@ public class App {
                         errorMsg = "";
                     } else if (!destinationPlanet[0].isBlank()) {
                         errorMsg = String.format(
-                                "%1$sError: Please select a spaceship before starting the simulation.%2$s\n",
-                                RED, WHITE);
+                                "%1$sError: Please select a spaceship before starting the simulation.%2$s%n",
+                                RED, RESET);
                     } else if (!selectedSpaceShip[0].isBlank()) {
                         errorMsg = String.format(
-                                "%1$sError: Please select a destination planet before starting the simulation.%2$s\n",
-                                RED, WHITE);
+                                "%1$sError: Please select a destination planet before starting the simulation.%2$s%n",
+                                RED, RESET);
                     } else {
                         errorMsg = String.format(
-                                "%1$sError: Please select a destination planet and a spaceship before starting the simulation.%2$s\n",
-                                RED, WHITE);
+                                "%1$sError: Please select a destination planet and a spaceship before starting the simulation.%2$s%n",
+                                RED, RESET);
                     }
                     break;
 
@@ -110,15 +132,15 @@ public class App {
             selectionTemp = 0;
 
             // Crea el logo
-            System.out.printf("%1$s               _____ ____  ___   ____________\n"
-                    + "              / ___// __ \\/   | / ____/ ____/\n"
-                    + "              \\__ \\/ /_/ / /| |/ /   / __/\n"
-                    + "             ___/ / ____/ ___ / /___/ /___\n"
-                    + "%2$s   _____ ___%1$s/____/_/%2$s__ %1$s/_/%2$s__%1$s|_\\____/_____/%2$s_____  ____\n"
-                    + "  / ___//  _/  |/  / / / / /   /   |/_  __/ __ \\/ __ \\\n"
-                    + "  \\__ \\ / // /|_/ / / / / /   / /| | / / / / / / /_/ /\n"
-                    + " ___/ // // /  / / /_/ / /___/ ___ |/ / / /_/ / _, _/\n"
-                    + "/____/___/_/  /_/\\____/_____/_/  |_/_/  \\____/_/ |_|%3$s\n\n", RED, GREEN, WHITE);
+            System.out.printf("%1$s               _____ ____  ___   ____________%n"
+                    + "              / ___// __ \\/   | / ____/ ____/%n"
+                    + "              \\__ \\/ /_/ / /| |/ /   / __/%n"
+                    + "             ___/ / ____/ ___ / /___/ /___%n"
+                    + "%2$s   _____ ___%1$s/____/_/%2$s__ %1$s/_/%2$s__%1$s|_\\____/_____/%2$s_____  ____%n"
+                    + "  / ___//  _/  |/  / / / / /   /   |/_  __/ __ \\/ __ \\%n"
+                    + "  \\__ \\ / // /|_/ / / / / /   / /| | / / / / / / /_/ /%n"
+                    + " ___/ // // /  / / /_/ / /___/ ___ |/ / / /_/ / _, _/%n"
+                    + "/____/___/_/  /_/\\____/_____/_/  |_/_/  \\____/_/ |_|%3$s%n%n", RED, GREEN, RESET);
 
             // Crea las opciones asignandole a la ultima el numero 0.
             for (String option : options) {
@@ -138,7 +160,7 @@ public class App {
             }
 
             optionsTemp = optionsTemp.concat("%3$sPlease select an option (0 - " + (nOptions - 1) + "):%2$s ");
-            System.out.printf(optionsTemp, GREEN, WHITE, BLUE, RED);
+            System.out.printf(optionsTemp, GREEN, RESET, BLUE, RED);
 
             // Valida si la opcion seleccionada es valida, si es un numero y si esta en el
             // rango permitido.
@@ -175,7 +197,7 @@ public class App {
 
         // Valida si hay un planeta seleccionado para mostrar el nombre del planeta.
         if (!destinationPlanet.isBlank()) {
-            options[0] = options[0].concat(String.format("%1$s (%2$s)%3$s", BLUE, destinationPlanet, WHITE));
+            options[0] = options[0].concat(String.format("%1$s (%2$s)%3$s", BLUE, destinationPlanet, RESET));
         }
 
         // Valida si hay una nave seleccionada para mostrar el nombre de la nave y el
@@ -183,13 +205,13 @@ public class App {
         if (!selectedSpaceShip[0].isBlank()) {
             options[1] = options[1]
                     .concat(String.format("%1$s (%2$s: %3$,d Passengers)%4$s", BLUE, selectedSpaceShip[0],
-                            Integer.parseInt(selectedSpaceShip[3]), WHITE));
+                            Integer.parseInt(selectedSpaceShip[3]), RESET));
         }
 
         // Valida si hay un planeta y una nave seleccionados para mostrar la duracion
         // del viaje en dias.
         if (!selectedSpaceShip[0].isBlank() && !destinationPlanet.isBlank()) {
-            options[2] = options[2].concat(String.format("%1$s (%2$,.0f Dias)%3$s", BLUE, travelDuration, WHITE));
+            options[2] = options[2].concat(String.format("%1$s (%2$,.0f Dias)%3$s", BLUE, travelDuration, RESET));
         }
 
         // Se crea y imprime el menu
@@ -257,7 +279,7 @@ public class App {
         System.out.printf(
                 "%4$sThe selected planet is:%6$s %1$s located approximately %2$,d million kilometers from Earth %3$s\n%5$sPress enter to continue.%6$s",
                 destinationPlanetInfo[0], Integer.parseInt(destinationPlanetInfo[1]),
-                planetDescription[option - 1], GREEN, BLUE, WHITE);
+                planetDescription[option - 1], GREEN, BLUE, RESET);
         input.nextLine(); // Gasta el enter
 
         return destinationPlanetInfo;
@@ -334,7 +356,7 @@ public class App {
                     "%4$sThe selected spaceship is:%6$s %1$s \n- Velocity: %2$,d KM/H\n- Max.Capacity: %3$s Passengers"
                             + "\n%5$sDo you want to select this spaceship(Y/n): %6$s",
                     tempSelectedSpaceShip[0], Integer.parseInt(tempSelectedSpaceShip[1]), tempSelectedSpaceShip[2],
-                    GREEN, BLUE, WHITE);
+                    GREEN, BLUE, RESET);
 
             // Se confirma la seleccion de la nave si es n (no) se devuelve a la seleccion
             // de nave
@@ -343,19 +365,19 @@ public class App {
             if (confirmation.matches("[Nn]")) {
                 return selectedSpaceShip;
             } else if (confirmation.matches("[^Yy\s]")) {
-                System.out.printf("%1$sError: Invalid character %2$s\n", RED, WHITE);
+                System.out.printf("%1$sError: Invalid character %2$s%n", RED, RESET);
             }
         } while (confirmation.matches("[^Yy\s]"));
 
         System.out.printf(
-                "%2$sSpaceship %1$s successfully selected.%3$s \n",
-                tempSelectedSpaceShip[0], GREEN, WHITE);
+                "%2$sSpaceship %1$s successfully selected.%3$s %n",
+                tempSelectedSpaceShip[0], GREEN, RESET);
 
         // Se pregunta por el numero de pasajeros a viajar, se valida que sea un numero
         // positivo y en caso de que el numero ingresado supere el maximo permitido por
         // la nave seleccionada se muestra una advertencia.
         while (spaceShipsCapacity.isBlank()) {
-            System.out.printf("%1$sPlease enter the number of passengers traveling: %2$s", BLUE, WHITE);
+            System.out.printf("%1$sPlease enter the number of passengers traveling: %2$s", BLUE, RESET);
 
             if (input.hasNextInt()) {
                 passengersTemp = input.nextInt();
@@ -365,16 +387,16 @@ public class App {
                         System.out.printf(
                                 "%1$sWarning: Spaceship capacity exceeded."
                                         + "The number of passengers is higher that the recommended limit."
-                                        + "\nPlease proceed with caution.%2$s\n%3$sPress enter to continue.%2$s",
-                                YELLOW, WHITE, BLUE);
+                                        + "%nPlease proceed with caution.%2$s%n%3$sPress enter to continue.%2$s",
+                                YELLOW, RESET, BLUE);
                         input.nextLine();
                     }
                     spaceShipsCapacity = String.valueOf(passengersTemp);
                 } else {
-                    System.out.printf("%1$sError: Please enter a positive number.%2$s\n", RED, WHITE);
+                    System.out.printf("%1$sError: Please enter a positive number.%2$s%n", RED, RESET);
                 }
             } else {
-                System.out.printf("%1$sError: Please enter a positive number.%2$s\n", RED, WHITE);
+                System.out.printf("%1$sError: Please enter a positive number.%2$s%n", RED, RESET);
             }
             input.nextLine();
         }
@@ -412,218 +434,68 @@ public class App {
         var destinationPlanetDistance = Double.parseDouble(destinationPlanet[1]) * 1000000;
         var currentDistance = spaceShipVel * 24;
 
-        var porcentage = (currentDistance / destinationPlanetDistance) * 100;
+        var percentage = (currentDistance / destinationPlanetDistance) * 100;
         var temp = 0d;
         var days = 0;
 
         System.out.printf(
-                "=====================================================\n"
-                        + "%1$sStarting the travel from Earth to %2$s.%3$s\n",
-                GREEN, destinationPlanet[0], WHITE);
-/*
-        var nave = selectedSpaceShip[0];
+                "=====================================================%n"
+                        + "%1$sStarting the travel from Earth to %2$s.%3$s%n",
+                GREEN, destinationPlanet[0], RESET);
 
-        // Duración del viaje
-
-        int number = random.nextInt(100);
-        System.out.println("Comienza el viaje a " + destinationPlanet[0]);
-        if (nave.equals("Millennium falcon")) {
-            // Nave 1
-            System.out.println(" ");
-            System.out.println("La Velocidad es: Rapida");
-            System.out.println(" ");
-            for (int i = 0; i <= 100; i++) {
-
-                System.out.print(i + " ");
-                if (number == i) {
-                    System.out.println(" ");
-                    System.out.println("Evento aleatorio " + generarEvento());
-                    System.out.println(" ");
-                }
-*/
 
         while (days <= travelDuration) {
-            System.out.printf("%1$sEstimated travel duration: %2$,.0f Dias.%4$s(%3$.0f%%)\r",
-                    BLUE, travelDuration - days, temp, WHITE);
-          
-            temp = temp + porcentage;
-            days = days + 1;
+            System.out.printf("%1$sEstimated travel duration: %2$,.0f Dias.%5$s(%3$.2f%%)%4$s\r",
+                    BLUE, travelDuration - days, temp, generateEvent(), RESET);
+
+            if (days == (int) (travelDuration / 2)) {
+                System.out.printf("Halfway through the route: %2$,.0f Dias.%4$s(%3$d%%)       %n",
+                        BLUE, travelDuration - travelDuration / 2, 50, RESET);
+            }
 
             try {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
+            temp = temp + percentage;
+            days = days + 1;
+
+            System.out.printf("                                                            \r");
         }
-    }
-/*
-                try {
-                    Thread.sleep(200); // Pausa de 1 segundo (200 milisegundos)
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        } else if (nave.equals("Red dwarf")) {
-            // Nave 2
-            System.out.println(" ");
-            System.out.println("La Velocidad es: Normal");
-            System.out.println(" ");
-            for (int i = 0; i <= 100; i++) {
-
-                System.out.print(i + " ");
-                if (number == i) {
-                    System.out.println(" ");
-                    System.out.println("Evento aleatorio " + generarEvento());
-                    System.out.println(" ");
-                }
-                if (i == 50) {
-                    System.out.println(" ");
-                    System.out.println("¡La nave esta en la mitad del viaje!");
-                    System.out.println(" ");
-                }
-                try {
-                    Thread.sleep(500); // Pausa de 1 segundo (500 milisegundos)
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        } else if (nave.equals("Discovery")) {
-            // Nave 3
-            System.out.println(" ");
-            System.out.println("La Velocidad es: Lenta");
-            System.out.println(" ");
-            for (int i = 0; i <= 100; i++) {
-
-                System.out.print(i + " ");
-                if (number == i) {
-                    System.out.println(" ");
-                    System.out.println("Evento aleatorio " + generarEvento());
-                    System.out.println(" ");
-                }
-                if (i == 50) {
-                    System.out.println(" ");
-                    System.out.println("¡La nave esta en la mitad del viaje!");
-                    System.out.println(" ");
-                }
-                try {
-                    Thread.sleep(1000); // Pausa de 1 segundo (1000 milisegundos)
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }
-
-        System.out.println(" ");
-        System.out.println("Ha finalizado el viaje al planeta " + destinationPlanet[0]);
-        System.out.println("La nave utilizada fue: " + selectedSpaceShip[0]);
-        System.out.println("El numero de pasajeros en el viaje fue: " + selectedSpaceShip[2]);
-    }
-
-    public void generarEvento(String[] selectedSpaceShip, int indice) {
-        // Generar evento aleatorio
-        System.out.println("Evento aleatorio para la nave " + selectedSpaceShip + ": " + EventoAleatorio);
-    }
-
+        System.out.printf("%1$sEstimated travel duration: %2$.0f Dias.%4$s(%3$d%%): Travel Completed.\r",
+                BLUE, travelDuration - travelDuration, 100, RESET);
         input.nextLine();
+    }
 
-        /*
-         * System.out.println("Comienza el viaje a " + destinationPlanet[0]);
-         * if (selectedSpaceShip[0].equals("Millennium falcon")) {
-         * // Nave 1
-         * System.out.println(" ");
-         * System.out.println("La Velocidad es: Rapida");
-         * System.out.println(" ");
-         * for (int i = 0; i <= 100; i++) {
-         * 
-         * System.out.print(i + " ");
-         * if (EventoAleatorio.length != 0) {
-         * System.out.println(generarEvento());
-         * }
-         * 
-         * if (i == 50) {
-         * System.out.println(" ");
-         * System.out.println("¡La nave esta en la mitad del viaje!");
-         * System.out.println(" ");
-         * }
-         * 
-         * try {
-         * Thread.sleep(200); // Pausa de 1 segundo (200 milisegundos)
-         * } catch (InterruptedException e) {
-         * e.printStackTrace();
-         * }
-         * }
-         * } else if (selectedSpaceShip[0].equals("Red dwarf")) {
-         * // Nave 2
-         * System.out.println(" ");
-         * System.out.println("La Velocidad es: Normal");
-         * System.out.println(" ");
-         * for (int i = 0; i <= 100; i++) {
-         * 
-         * System.out.print(i + " ");
-         * 
-         * if (i == 50) {
-         * System.out.println(" ");
-         * System.out.println("¡La nave esta en la mitad del viaje!");
-         * System.out.println(" ");
-         * }
-         * try {
-         * Thread.sleep(500); // Pausa de 1 segundo (500 milisegundos)
-         * } catch (InterruptedException e) {
-         * e.printStackTrace();
-         * }
-         * }
-         * } else if (selectedSpaceShip[0].equals("Discovery")) {
-         * // Nave 3
-         * System.out.println(" ");
-         * System.out.println("La Velocidad es: Lenta");
-         * System.out.println(" ");
-         * for (int i = 0; i <= 100; i++) {
-         * 
-         * System.out.print(i + " ");
-         * 
-         * if (i == 50) {
-         * System.out.println(" ");
-         * System.out.println("¡La nave esta en la mitad del viaje!");
-         * System.out.println(" ");
-         * }
-         * try {
-         * Thread.sleep(1000); // Pausa de 1 segundo (1000 milisegundos)
-         * } catch (InterruptedException e) {
-         * e.printStackTrace();
-         * }
-         * }
-         * }
-         * System.out.println("ha finalizado el viaje al planeta " +
-         * destinationPlanet[0]);
-         * // do {
-         * // } while (nave.equals("Millennium falcon") || (nave.equals("Discovery")) ||
-         * // (nave.equals("Red dwarf")));
-         * }
-         * 
-         * public void generarEvento(String[] selectedSpaceShip, int indice) {
-         * 
-         * System.out.println("Evento aleatorio para la nave " + selectedSpaceShip +
-         * ": " + EventoAleatorio);
-         * }
-         * 
-         * private static final String[] EventoAleatorio = {
-         * "navegación exitosa",
-         * "falla en el sistema",
-         * "encuentro con un asteroide",
-         * "avistamiento de una nueva estrella",
-         * "fuga de combustible",
-         * "mantenimiento programado",
-         * "comunicación con otra nave",
-         * "anomalía en el espacio-tiempo"
-         * };
-         * 
-         * private static final Random random = new Random();
-         * 
-         * public static String generarEvento() {
-         * int indice = random.nextInt(EventoAleatorio.length);
-         * return EventoAleatorio[indice];
-         * }
-         */
+    private static String generateEvent() {
+        Random random = new Random();
+        double probability = random.nextDouble();
+        String[] randomEvent = {
+                "Successful navigation",
+                "System failure",
+                "Encounter with an asteroid",
+                "Sighting of a new star",
+                "Fuel leak",
+                "Scheduled maintenance",
+                "Communication with another spacecraft",
+                "Space-time anomaly"
+        };
+        double[] probabilitys = {
+                0.05, // 5%
+        };
+        int index = 0;
+        String event = "";
+
+        if (probability < probabilitys[0]) {
+            index = random.nextInt(randomEvent.length);
+            event = String.format(": %1$s%n", randomEvent[index]);
+
+          return event;
+        } else {
+            return event;
+        }
+    }
+
 }
