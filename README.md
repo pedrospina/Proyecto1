@@ -77,7 +77,7 @@ Este programa Java básico se encarga de:
       parámetros para recibir datos del usuario (por ejemplo, la distancia y
       velocidad) y retornarán resultados como la duración del viaje.
 
-[Ejecutar]() :arrow_forward:
+[Ejecutar](https://onlinegdb.com/4N3hoX4Mb) :arrow_forward:
 
 ## Tecnologías Utilizadas:
 
