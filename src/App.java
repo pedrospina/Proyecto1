@@ -13,27 +13,6 @@ public class App {
     // Static variables used throughout the project
     static Scanner input = new Scanner(System.in);
 
-    /**
-     * Calcula la distancia entre dos puntos en un plano cartesiano.
-     *
-     * <p>
-     * Este método utiliza la fórmula de la distancia euclidiana
-     * para determinar la separación entre los puntos (x1, y1) y (x2, y2).
-     * </p>
-     *
-     * @param x1 Coordenada X del primer punto.
-     * @param y1 Coordenada Y del primer punto.
-     * @param x2 Coordenada X del segundo punto.
-     * @param y2 Coordenada Y del segundo punto.
-     * 
-     * @return La distancia euclidiana entre los dos puntos.
-     * 
-     * @throws IllegalArgumentException Si las coordenadas son inválidas.
-     * 
-     * @since 1.0
-     * @see Math#sqrt(double)
-     * @author [Tu Nombre]
-     */
     public static void main(String[] args) throws Exception {
 
         // Selected planet information
@@ -48,6 +27,9 @@ public class App {
 
         // Error menssage to display in the menu
         var errorMsg = "";
+
+        var fix = "=";
+        fix = fix.repeat(60);
 
         while (true) {
             int option;
@@ -64,7 +46,7 @@ public class App {
 
                 // Opcion 0 - Salir del programa
                 case 0:
-                    System.out.printf("%1$sExiting the program...%2$s", BLUE, RESET);
+                    System.out.printf("%2$s%4$s%3$s%n%1$sExiting the program...%3$s", BLUE, GREEN, RESET, fix);
                     System.exit(0);
                     break;
 
@@ -89,17 +71,11 @@ public class App {
                         calTravelProgress(destinationPlanet, selectedSpaceShip, travelDuration);
                         errorMsg = "";
                     } else if (!destinationPlanet[0].isBlank()) {
-                        errorMsg = String.format(
-                                "%1$sError: Please select a spaceship before starting the simulation.%2$s%n",
-                                RED, RESET);
+                        errorMsg = "Error: Please select a spaceship before starting the simulation.%n";
                     } else if (!selectedSpaceShip[0].isBlank()) {
-                        errorMsg = String.format(
-                                "%1$sError: Please select a destination planet before starting the simulation.%2$s%n",
-                                RED, RESET);
+                        errorMsg = "Error: Please select a destination planet before starting the simulation.%n";
                     } else {
-                        errorMsg = String.format(
-                                "%1$sError: Please select a destination planet and a spaceship before starting the simulation.%2$s%n",
-                                RED, RESET);
+                        errorMsg = "Error: Please select a destination planet and a spaceship before starting the simulation.%n";
                     }
                     break;
 
@@ -125,6 +101,8 @@ public class App {
         var selectionTemp = 0;
         var selection = 0;
         var error = true;
+        var fix = "=";
+        fix = fix.repeat(60);
 
         while (error == true) {
             optionsTemp = "";
@@ -140,27 +118,31 @@ public class App {
                     + "  / ___//  _/  |/  / / / / /   /   |/_  __/ __ \\/ __ \\%n"
                     + "  \\__ \\ / // /|_/ / / / / /   / /| | / / / / / / /_/ /%n"
                     + " ___/ // // /  / / /_/ / /___/ ___ |/ / / /_/ / _, _/%n"
-                    + "/____/___/_/  /_/\\____/_____/_/  |_/_/  \\____/_/ |_|%3$s%n%n", RED, GREEN, RESET);
+                    + "/____/___/_/  /_/\\____/_____/_/  |_/_/  \\____/_/ |_|%n%4$s%3$s%n", RED, GREEN, RESET,
+                    fix);
 
             // Crea las opciones asignandole a la ultima el numero 0.
             for (String option : options) {
                 if (i != (nOptions - 1)) {
-                    optionsTemp = optionsTemp.concat("%1$s" + (i + 1) + ".%2$s " + option + ".\n");
+                    optionsTemp = optionsTemp
+                            .concat(String.format("%1$s%3$s. %2$s%4$s.%n", GREEN, RESET, (i + 1), option));
                 } else {
-                    optionsTemp = optionsTemp.concat("%1$s" + (i - (nOptions - 1)) + ".%2$s "
-                            + option + ".\n");
+                    optionsTemp = optionsTemp
+                            .concat(String.format("%1$s%3$s. %2$s%4$s.%n", GREEN, RESET, 0, option));
                 }
                 i = i + 1;
             }
 
             // Agrega el mensaje de error al menu en caso de haberlo.
             if (error = true) {
-                optionsTemp = optionsTemp.concat(errorMsg);
+                optionsTemp = optionsTemp.concat("%3$s" + errorMsg + "%2$s");
                 error = false;
             }
 
-            optionsTemp = optionsTemp.concat("%3$sPlease select an option (0 - " + (nOptions - 1) + "):%2$s ");
-            System.out.printf(optionsTemp, GREEN, RESET, BLUE, RED);
+            optionsTemp = optionsTemp
+                    .concat("%1$s%5$s%4$s%2$s%nPlease select an option (0 - " + (nOptions - 1) + "):%4$s ");
+
+            System.out.printf(optionsTemp, GREEN, BLUE, RED, RESET, fix);
 
             // Valida si la opcion seleccionada es valida, si es un numero y si esta en el
             // rango permitido.
@@ -170,11 +152,11 @@ public class App {
                     selection = selectionTemp;
                 } else {
                     error = true;
-                    errorMsg = "%4$sError: The option " + selectionTemp + " is not valid.%2$s\n";
+                    errorMsg = "%3$sError: The option " + selectionTemp + " is not valid.%4$s%n";
                 }
             } else {
                 error = true;
-                errorMsg = "%4$sError: Please enter a number from 0 to " + (nOptions - 1) + ".%2$s\n";
+                errorMsg = "%3$s%5$s%nError: Please enter a number from 0 to " + (nOptions - 1) + ".%4$s%n";
             }
             input.nextLine(); // Limpiar buffer
         }
@@ -260,13 +242,13 @@ public class App {
 
         // Guarda la descripción de los planetas.
         String[] planetDescription = {
-                "is the smallest and closest planet to the Sun.\nIt has a rocky surface with extreme temperature changes, ranging from -180°C at night to 430°C during the day.\nIt orbits the Sun in just 88 days.",
-                "is the second planet from the Sun and similar in size to Earth.\nIt has a thick, toxic atmosphere primarily made of carbon dioxide, which creates a runaway greenhouse effect, making it the hottest planet in the solar system.\nSurface temperatures can reach up to 470°C.\nVenus has no moons and rotates in the opposite direction to most planets, with a day longer than its year.",
+                "is the smallest and closest planet to the Sun.%nIt has a rocky surface with extreme temperature changes, ranging from -180°C at night to 430°C during the day.%nIt orbits the Sun in just 88 days.",
+                "is the second planet from the Sun and similar in size to Earth.%nIt has a thick, toxic atmosphere primarily made of carbon dioxide, which creates a runaway greenhouse effect, making it the hottest planet in the solar system.%nSurface temperatures can reach up to 470°C.%nVenus has no moons and rotates in the opposite direction to most planets, with a day longer than its year.",
                 "is the fourth planet from the Sun, known as the \"Red Planet\" due to its reddish appearance caused by iron oxide on its surface.",
-                "is the largest planet in the solar system, known for its massive size, strong magnetic field, and distinctive Great Red Spot, a giant storm.\nIt is a gas giant with no solid surface.",
-                "is the second-largest planet in the solar system, famous for its stunning ring system made of ice and rock.\nIt is a gas giant with a predominantly hydrogen and helium atmosphere.",
-                "is the seventh planet from the Sun and is known for its distinctive blue-green color, caused by methane in its atmosphere.\nIt is an ice giant with a mostly hydrogen and helium atmosphere, but it also contains water, ammonia, and methane.\nUranus has a unique rotation, spinning on its side with an axial tilt of 98 degrees.\nThis results in extreme seasonal variations.\nIt has 13 rings and 27 known moons.",
-                "is the eighth and farthest planet from the Sun.\nIt is an ice giant with a deep blue color due to methane in its atmosphere.\nNeptune has strong winds, the fastest in the solar system, and large storm systems, including the Great Dark Spot.\nIt has 14 known moons, with Triton being the largest, and five rings.\nIts atmosphere is mostly hydrogen, helium, and methane."
+                "is the largest planet in the solar system, known for its massive size, strong magnetic field, and distinctive Great Red Spot, a giant storm.%nIt is a gas giant with no solid surface.",
+                "is the second-largest planet in the solar system, famous for its stunning ring system made of ice and rock.%nIt is a gas giant with a predominantly hydrogen and helium atmosphere.",
+                "is the seventh planet from the Sun and is known for its distinctive blue-green color, caused by methane in its atmosphere.%nIt is an ice giant with a mostly hydrogen and helium atmosphere, but it also contains water, ammonia, and methane.%nUranus has a unique rotation, spinning on its side with an axial tilt of 98 degrees.%nThis results in extreme seasonal variations.%nIt has 13 rings and 27 known moons.",
+                "is the eighth and farthest planet from the Sun.%nIt is an ice giant with a deep blue color due to methane in its atmosphere.%nNeptune has strong winds, the fastest in the solar system, and large storm systems, including the Great Dark Spot.%nIt has 14 known moons, with Triton being the largest, and five rings.%nIts atmosphere is mostly hydrogen, helium, and methane."
         };
 
         // Se crea un nuevo String con la información a retornar. (Nombre del planeta y
@@ -277,7 +259,7 @@ public class App {
 
         // Imprime la información del planeta seleccionado
         System.out.printf(
-                "%4$sThe selected planet is:%6$s %1$s located approximately %2$,d million kilometers from Earth %3$s\n%5$sPress enter to continue.%6$s",
+                "%4$sThe selected planet is:%6$s %1$s located approximately %2$,d million kilometers from Earth %3$s%n%5$sPress enter to continue.%6$s",
                 destinationPlanetInfo[0], Integer.parseInt(destinationPlanetInfo[1]),
                 planetDescription[option - 1], GREEN, BLUE, RESET);
         input.nextLine(); // Gasta el enter
@@ -353,8 +335,8 @@ public class App {
 
             // Imprime por consola la información de la nave seleccionada
             System.out.printf(
-                    "%4$sThe selected spaceship is:%6$s %1$s \n- Velocity: %2$,d KM/H\n- Max.Capacity: %3$s Passengers"
-                            + "\n%5$sDo you want to select this spaceship(Y/n): %6$s",
+                    "%4$sThe selected spaceship is:%6$s %1$s %n- Velocity: %2$,d KM/H%n- Max.Capacity: %3$s Passengers"
+                            + "%n%5$sDo you want to select this spaceship(Y/n): %6$s",
                     tempSelectedSpaceShip[0], Integer.parseInt(tempSelectedSpaceShip[1]), tempSelectedSpaceShip[2],
                     GREEN, BLUE, RESET);
 
@@ -364,10 +346,10 @@ public class App {
 
             if (confirmation.matches("[Nn]")) {
                 return selectedSpaceShip;
-            } else if (confirmation.matches("[^Yy\s]")) {
+            } else if (confirmation.matches("[^Yy%s]")) {
                 System.out.printf("%1$sError: Invalid character %2$s%n", RED, RESET);
             }
-        } while (confirmation.matches("[^Yy\s]"));
+        } while (confirmation.matches("[^Yy%s]"));
 
         System.out.printf(
                 "%2$sSpaceship %1$s successfully selected.%3$s %n",
@@ -437,12 +419,13 @@ public class App {
         var percentage = (currentDistance / destinationPlanetDistance) * 100;
         var temp = 0d;
         var days = 0;
+        var fix = "=";
+        fix = fix.repeat(60);
 
         System.out.printf(
-                "=====================================================%n"
-                        + "%1$sStarting the travel from Earth to %2$s.%3$s%n",
-                GREEN, destinationPlanet[0], RESET);
-
+                "%1$s%4$s%n"
+                        + "Starting the travel from Earth to %2$s.%3$s%n",
+                GREEN, destinationPlanet[0], RESET, fix);
 
         while (days <= travelDuration) {
             System.out.printf("%1$sEstimated travel duration: %2$,.0f Dias.%5$s(%3$.2f%%)%4$s\r",
@@ -464,11 +447,17 @@ public class App {
 
             System.out.printf("                                                            \r");
         }
-        System.out.printf("%1$sEstimated travel duration: %2$.0f Dias.%4$s(%3$d%%): Travel Completed.\r",
+        System.out.printf("%1$sEstimated travel duration: %2$.0f Dias.%4$s(%3$d%%): Travel Completed.%n",
                 BLUE, travelDuration - travelDuration, 100, RESET);
+        System.out.printf(
+                "%1$s====================== Final Report ======================%2$s%n- Destination Planet: %3$s%n"
+                        + "- Spaceship: %4$s%n- N° Passengers: %5$s%n- Total distance traveled: %6$,.0f%n"
+                        + "- Average travel velocity: %7$,.0f%n- Travel duration: %8$,.0f%n"
+                        + "%1$s%9$s%2$s%n%10$sPlease press enter to continue.%2$s",
+                GREEN, RESET, destinationPlanet[0], selectedSpaceShip[0], selectedSpaceShip[2],
+                destinationPlanetDistance, spaceShipVel, travelDuration, fix, BLUE);
         input.nextLine();
 
-        
     }
 
     private static String generateEvent() {
@@ -494,7 +483,7 @@ public class App {
             index = random.nextInt(randomEvent.length);
             event = String.format(": %1$s%n", randomEvent[index]);
 
-          return event;
+            return event;
         } else {
             return event;
         }
