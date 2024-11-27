@@ -25,7 +25,7 @@ public class App {
         var travelDuration = 0d;
 
         var errorMsg = "";
-
+        
         while (true) {
             int option;
 
@@ -67,15 +67,15 @@ public class App {
                         errorMsg = "";
                     } else if (!destinationPlanet[0].isBlank()) {
                         errorMsg = String.format(
-                                "%1$sError: Please select a spaceship before starting the simulation.%2$s%n",
+                                "%1$sError: Please select a spaceship before starting the simulation.%2$s\n",
                                 RED, WHITE);
                     } else if (!selectedSpaceShip[0].isBlank()) {
                         errorMsg = String.format(
-                                "%1$sError: Please select a destination planet before starting the simulation.%2$s%n",
+                                "%1$sError: Please select a destination planet before starting the simulation.%2$s\n",
                                 RED, WHITE);
                     } else {
                         errorMsg = String.format(
-                                "%1$sError: Please select a destination planet and a spaceship before starting the simulation.%2$s%n",
+                                "%1$sError: Please select a destination planet and a spaceship before starting the simulation.%2$s\n",
                                 RED, WHITE);
                     }
                     break;
@@ -109,23 +109,23 @@ public class App {
             selectionTemp = 0;
 
             // Crea el logo
-            System.out.printf("%1$s               _____ ____  ___   ____________%n"
-                    + "              / ___// __ \\/   | / ____/ ____/%n"
-                    + "              \\__ \\/ /_/ / /| |/ /   / __/%n"
-                    + "             ___/ / ____/ ___ / /___/ /___%n"
-                    + "%2$s   _____ ___%1$s/____/_/%2$s__ %1$s/_/%2$s__%1$s|_\\____/_____/%2$s_____  ____%n"
-                    + "  / ___//  _/  |/  / / / / /   /   |/_  __/ __ \\/ __ \\%n"
-                    + "  \\__ \\ / // /|_/ / / / / /   / /| | / / / / / / /_/ /%n"
-                    + " ___/ // // /  / / /_/ / /___/ ___ |/ / / /_/ / _, _/%n"
-                    + "/____/___/_/  /_/\\____/_____/_/  |_/_/  \\____/_/ |_|%3$s%n%n", RED, GREEN, WHITE);
+            System.out.printf("%1$s               _____ ____  ___   ____________\n"
+                    + "              / ___// __ \\/   | / ____/ ____/\n"
+                    + "              \\__ \\/ /_/ / /| |/ /   / __/\n"
+                    + "             ___/ / ____/ ___ / /___/ /___\n"
+                    + "%2$s   _____ ___%1$s/____/_/%2$s__ %1$s/_/%2$s__%1$s|_\\____/_____/%2$s_____  ____\n"
+                    + "  / ___//  _/  |/  / / / / /   /   |/_  __/ __ \\/ __ \\\n"
+                    + "  \\__ \\ / // /|_/ / / / / /   / /| | / / / / / / /_/ /\n"
+                    + " ___/ // // /  / / /_/ / /___/ ___ |/ / / /_/ / _, _/\n"
+                    + "/____/___/_/  /_/\\____/_____/_/  |_/_/  \\____/_/ |_|%3$s\n\n", RED, GREEN, WHITE);
 
             // Crea las opciones asignandole a la ultima el numero 0.
             for (String option : options) {
                 if (i != (nOptions - 1)) {
-                    optionsTemp = optionsTemp.concat("%1$s" + (i + 1) + ".%2$s " + option + ".%n");
+                    optionsTemp = optionsTemp.concat("%1$s" + (i + 1) + ".%2$s " + option + ".\n");
                 } else {
                     optionsTemp = optionsTemp.concat("%1$s" + (i - (nOptions - 1)) + ".%2$s "
-                            + option + ".%n");
+                            + option + ".\n");
                 }
                 i = i + 1;
             }
@@ -147,11 +147,11 @@ public class App {
                     selection = selectionTemp;
                 } else {
                     error = true;
-                    errorMsg = "%4$sError: The option " + selectionTemp + " is not valid.%2$s%n";
+                    errorMsg = "%4$sError: The option " + selectionTemp + " is not valid.%2$s\n";
                 }
             } else {
                 error = true;
-                errorMsg = "%4$sError: Please enter a number from 0 to " + (nOptions - 1) + ".%2$s%n";
+                errorMsg = "%4$sError: Please enter a number from 0 to " + (nOptions - 1) + ".%2$s\n";
             }
             input.nextLine(); // Limpiar buffer
         }
@@ -237,13 +237,13 @@ public class App {
 
         // Guarda la descripción de los planetas.
         String[] planetDescription = {
-                "is the smallest and closest planet to the Sun.%nIt has a rocky surface with extreme temperature changes, ranging from -180°C at night to 430°C during the day.%nIt orbits the Sun in just 88 days.",
-                "is the second planet from the Sun and similar in size to Earth.%nIt has a thick, toxic atmosphere primarily made of carbon dioxide, which creates a runaway greenhouse effect, making it the hottest planet in the solar system.%nSurface temperatures can reach up to 470°C.%nVenus has no moons and rotates in the opposite direction to most planets, with a day longer than its year.",
+                "is the smallest and closest planet to the Sun.\nIt has a rocky surface with extreme temperature changes, ranging from -180°C at night to 430°C during the day.\nIt orbits the Sun in just 88 days.",
+                "is the second planet from the Sun and similar in size to Earth.\nIt has a thick, toxic atmosphere primarily made of carbon dioxide, which creates a runaway greenhouse effect, making it the hottest planet in the solar system.\nSurface temperatures can reach up to 470°C.\nVenus has no moons and rotates in the opposite direction to most planets, with a day longer than its year.",
                 "is the fourth planet from the Sun, known as the \"Red Planet\" due to its reddish appearance caused by iron oxide on its surface.",
-                "is the largest planet in the solar system, known for its massive size, strong magnetic field, and distinctive Great Red Spot, a giant storm.%nIt is a gas giant with no solid surface.",
-                "is the second-largest planet in the solar system, famous for its stunning ring system made of ice and rock.%nIt is a gas giant with a predominantly hydrogen and helium atmosphere.",
-                "is the seventh planet from the Sun and is known for its distinctive blue-green color, caused by methane in its atmosphere.%nIt is an ice giant with a mostly hydrogen and helium atmosphere, but it also contains water, ammonia, and methane.%nUranus has a unique rotation, spinning on its side with an axial tilt of 98 degrees.%nThis results in extreme seasonal variations.%nIt has 13 rings and 27 known moons.",
-                "is the eighth and farthest planet from the Sun.%nIt is an ice giant with a deep blue color due to methane in its atmosphere.%nNeptune has strong winds, the fastest in the solar system, and large storm systems, including the Great Dark Spot.%nIt has 14 known moons, with Triton being the largest, and five rings.%nIts atmosphere is mostly hydrogen, helium, and methane."
+                "is the largest planet in the solar system, known for its massive size, strong magnetic field, and distinctive Great Red Spot, a giant storm.\nIt is a gas giant with no solid surface.",
+                "is the second-largest planet in the solar system, famous for its stunning ring system made of ice and rock.\nIt is a gas giant with a predominantly hydrogen and helium atmosphere.",
+                "is the seventh planet from the Sun and is known for its distinctive blue-green color, caused by methane in its atmosphere.\nIt is an ice giant with a mostly hydrogen and helium atmosphere, but it also contains water, ammonia, and methane.\nUranus has a unique rotation, spinning on its side with an axial tilt of 98 degrees.\nThis results in extreme seasonal variations.\nIt has 13 rings and 27 known moons.",
+                "is the eighth and farthest planet from the Sun.\nIt is an ice giant with a deep blue color due to methane in its atmosphere.\nNeptune has strong winds, the fastest in the solar system, and large storm systems, including the Great Dark Spot.\nIt has 14 known moons, with Triton being the largest, and five rings.\nIts atmosphere is mostly hydrogen, helium, and methane."
         };
 
         // Se crea un nuevo String con la información a retornar. (Nombre del planeta y
@@ -254,7 +254,7 @@ public class App {
 
         // Imprime la información del planeta seleccionado
         System.out.printf(
-                "%4$sThe selected planet is:%6$s %1$s located approximately %2$,d million kilometers from Earth %3$s%n%5$sPress enter to continue.%6$s",
+                "%4$sThe selected planet is:%6$s %1$s located approximately %2$,d million kilometers from Earth %3$s\n%5$sPress enter to continue.%6$s",
                 destinationPlanetInfo[0], Integer.parseInt(destinationPlanetInfo[1]),
                 planetDescription[option - 1], GREEN, BLUE, WHITE);
         input.nextLine(); // Gasta el enter
@@ -330,8 +330,8 @@ public class App {
 
             // Imprime por consola la información de la nave seleccionada
             System.out.printf(
-                    "%4$sThe selected spaceship is:%6$s %1$s %n- Velocity: %2$,d KM/H%n- Max.Capacity: %3$s Passengers"
-                            + "%n%5$sDo you want to select this spaceship(Y/n): %6$s",
+                    "%4$sThe selected spaceship is:%6$s %1$s \n- Velocity: %2$,d KM/H\n- Max.Capacity: %3$s Passengers"
+                            + "\n%5$sDo you want to select this spaceship(Y/n): %6$s",
                     tempSelectedSpaceShip[0], Integer.parseInt(tempSelectedSpaceShip[1]), tempSelectedSpaceShip[2],
                     GREEN, BLUE, WHITE);
 
@@ -342,12 +342,12 @@ public class App {
             if (confirmation.matches("[Nn]")) {
                 return selectedSpaceShip;
             } else if (confirmation.matches("[^Yy\s]")) {
-                System.out.printf("%1$sError: Invalid character %2$s%n", RED, WHITE);
+                System.out.printf("%1$sError: Invalid character %2$s\n", RED, WHITE);
             }
         } while (confirmation.matches("[^Yy\s]"));
 
         System.out.printf(
-                "%2$sSpaceship %1$s successfully selected.%3$s %n",
+                "%2$sSpaceship %1$s successfully selected.%3$s \n",
                 tempSelectedSpaceShip[0], GREEN, WHITE);
 
         // Se pregunta por el numero de pasajeros a viajar, se valida que sea un numero
@@ -364,16 +364,16 @@ public class App {
                         System.out.printf(
                                 "%1$sWarning: Spaceship capacity exceeded."
                                         + "The number of passengers is higher that the recommended limit."
-                                        + "%nPlease proceed with caution.%2$s%n%3$sPress enter to continue.%2$s",
+                                        + "\nPlease proceed with caution.%2$s\n%3$sPress enter to continue.%2$s",
                                 YELLOW, WHITE, BLUE);
                         input.nextLine();
                     }
                     spaceShipsCapacity = String.valueOf(passengersTemp);
                 } else {
-                    System.out.printf("%1$sError: Please enter a positive number.%2$s%n", RED, WHITE);
+                    System.out.printf("%1$sError: Please enter a positive number.%2$s\n", RED, WHITE);
                 }
             } else {
-                System.out.printf("%1$sError: Please enter a positive number.%2$s%n", RED, WHITE);
+                System.out.printf("%1$sError: Please enter a positive number.%2$s\n", RED, WHITE);
             }
             input.nextLine();
         }
@@ -407,67 +407,227 @@ public class App {
     private static void calTravelProgress(String[] destinationPlanet, String[] selectedSpaceShip,
             double travelDuration) {
 
-        var percentage = 100 / travelDuration;
+        var spaceShipVel = Double.parseDouble(selectedSpaceShip[1]);
+        var destinationPlanetDistance = Double.parseDouble(destinationPlanet[1]) * 1000000;
+        var currentDistance = spaceShipVel * 24;
+
+        var porcentage = (currentDistance / destinationPlanetDistance) * 100;
         var temp = 0d;
         var days = 0;
 
         System.out.printf(
-                "=====================================================%n"
-                        + "%1$sStarting the travel from Earth to %2$s.%3$s%n",
+                "=====================================================\n"
+                        + "%1$sStarting the travel from Earth to %2$s.%3$s\n",
                 GREEN, destinationPlanet[0], WHITE);
+/*
+        var nave = selectedSpaceShip[0];
+        // var selectedSpaceShip = "Discovery";
+        // Duración del viaje
+        // == spaceShipsMaxVel[1] & spaceShipsMaxVel == ""
+       // String[] number = { "10 20 30 40 50 60 70 80 90 "};
+    
+        int number = random.nextInt(100);
+        System.out.println("Comienza el viaje a " + destinationPlanet[0]);
+        if (nave.equals("Millennium falcon")) {
+            // Nave 1
+            System.out.println(" ");
+            System.out.println("La Velocidad es: Rapida");
+            System.out.println(" ");
+            for (int i = 0; i <= 100; i++) {
+
+                System.out.print(i + " ");
+                if (number == i) {
+                    System.out.println(" ");
+                    System.out.println("Evento aleatorio "+ generarEvento());
+                    System.out.println(" ");
+                }
+*/
 
         while (days <= travelDuration) {
-            System.out.printf("%1$sEstimated travel duration: %2$,.0f Dias.%5$s(%3$.2f%%)%4$s\r",
-                    BLUE, travelDuration - days, temp, generateEvent(), WHITE);
-
-            if (days == (int) (travelDuration / 2)) {
-                System.out.printf("Halfway through the route: %2$,.0f Dias.%4$s(%3$d%%)       %n",
-                        BLUE, travelDuration - travelDuration / 2, 50, WHITE);
-            }
+            System.out.printf("%1$sEstimated travel duration: %2$,.0f Dias.%4$s(%3$.0f%%)\r",
+                    BLUE, travelDuration - days, temp, WHITE);
+          
+            temp = temp + porcentage;
+            days = days + 1;
 
             try {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
-            temp = temp + percentage;
-            days = days + 1;
-
-            System.out.printf("                                                            \r");
         }
-        System.out.printf("%1$sEstimated travel duration: %2$.0f Dias.%4$s(%3$d%%): Travel Completed.\r",
-                BLUE, travelDuration - travelDuration, 100, WHITE);
+    }
+/*
+                try {
+                    Thread.sleep(200); // Pausa de 1 segundo (200 milisegundos)
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else if (nave.equals("Red dwarf")) {
+            // Nave 2
+            System.out.println(" ");
+            System.out.println("La Velocidad es: Normal");
+            System.out.println(" ");
+            for (int i = 0; i <= 100; i++) {
+
+                System.out.print(i + " ");
+                if (number == i) {
+                    System.out.println(" ");
+                    System.out.println("Evento aleatorio "+ generarEvento());
+                    System.out.println(" ");
+                }
+                if (i == 50) {
+                    System.out.println(" ");
+                    System.out.println("¡La nave esta en la mitad del viaje!");
+                    System.out.println(" ");
+                }
+                try {
+                    Thread.sleep(500); // Pausa de 1 segundo (500 milisegundos)
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                
+            }
+        } else if (nave.equals("Discovery")) {
+            // Nave 3
+            System.out.println(" ");
+            System.out.println("La Velocidad es: Lenta");
+            System.out.println(" ");
+            for (int i = 0; i <= 100; i++) {
+
+                System.out.print(i + " ");
+                if (number == i) {
+                    System.out.println(" ");
+                    System.out.println("Evento aleatorio " + generarEvento());
+                    System.out.println(" ");
+                }
+                if (i == 50) {
+                    System.out.println(" ");
+                    System.out.println("¡La nave esta en la mitad del viaje!");
+                    System.out.println(" ");
+                }
+                try {
+                    Thread.sleep(1000); // Pausa de 1 segundo (1000 milisegundos)
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+       
+        }
+
+        System.out.println(" ");
+        System.out.println("Ha finalizado el viaje al planeta " + destinationPlanet[0]);
+        System.out.println("La nave utilizada fue: "+ selectedSpaceShip[0]);
+        System.out.println("El numero de pasajeros en el viaje fue: " + selectedSpaceShip[2]);
+        // do {
+        // } while (nave.equals("Millennium falcon") || (nave.equals("Discovery")) ||
+        // (nave.equals("Red dwarf")));
+    }
+
+    public void generarEvento(String[] selectedSpaceShip, int indice) {
+            // Generar evento aleatorio
+        System.out.println("Evento aleatorio para la nave " + selectedSpaceShip + ": " + EventoAleatorio);
+    }
+
         input.nextLine();
-    }
 
-    private static String generateEvent() {
-        Random random = new Random();
-        double probability = random.nextDouble();
-        String[] randomEvent = {
-                "Successful navigation",
-                "System failure",
-                "Encounter with an asteroid",
-                "Sighting of a new star",
-                "Fuel leak",
-                "Scheduled maintenance",
-                "Communication with another spacecraft",
-                "Space-time anomaly"
-        };
-        double[] probabilitys = {
-                0.05, // 5%
-        };
-        int index = 0;
-        String event = "";
-
-        if (probability < probabilitys[0]) {
-            index = random.nextInt(randomEvent.length);
-            event = String.format(": %1$s%n", randomEvent[index]);
-
-            return event;
-        } else {
-            return event;
-        }
-    }
-
+        /*
+         * System.out.println("Comienza el viaje a " + destinationPlanet[0]);
+         * if (selectedSpaceShip[0].equals("Millennium falcon")) {
+         * // Nave 1
+         * System.out.println(" ");
+         * System.out.println("La Velocidad es: Rapida");
+         * System.out.println(" ");
+         * for (int i = 0; i <= 100; i++) {
+         * 
+         * System.out.print(i + " ");
+         * if (EventoAleatorio.length != 0) {
+         * System.out.println(generarEvento());
+         * }
+         * 
+         * if (i == 50) {
+         * System.out.println(" ");
+         * System.out.println("¡La nave esta en la mitad del viaje!");
+         * System.out.println(" ");
+         * }
+         * 
+         * try {
+         * Thread.sleep(200); // Pausa de 1 segundo (200 milisegundos)
+         * } catch (InterruptedException e) {
+         * e.printStackTrace();
+         * }
+         * }
+         * } else if (selectedSpaceShip[0].equals("Red dwarf")) {
+         * // Nave 2
+         * System.out.println(" ");
+         * System.out.println("La Velocidad es: Normal");
+         * System.out.println(" ");
+         * for (int i = 0; i <= 100; i++) {
+         * 
+         * System.out.print(i + " ");
+         * 
+         * if (i == 50) {
+         * System.out.println(" ");
+         * System.out.println("¡La nave esta en la mitad del viaje!");
+         * System.out.println(" ");
+         * }
+         * try {
+         * Thread.sleep(500); // Pausa de 1 segundo (500 milisegundos)
+         * } catch (InterruptedException e) {
+         * e.printStackTrace();
+         * }
+         * }
+         * } else if (selectedSpaceShip[0].equals("Discovery")) {
+         * // Nave 3
+         * System.out.println(" ");
+         * System.out.println("La Velocidad es: Lenta");
+         * System.out.println(" ");
+         * for (int i = 0; i <= 100; i++) {
+         * 
+         * System.out.print(i + " ");
+         * 
+         * if (i == 50) {
+         * System.out.println(" ");
+         * System.out.println("¡La nave esta en la mitad del viaje!");
+         * System.out.println(" ");
+         * }
+         * try {
+         * Thread.sleep(1000); // Pausa de 1 segundo (1000 milisegundos)
+         * } catch (InterruptedException e) {
+         * e.printStackTrace();
+         * }
+         * }
+         * }
+         * System.out.println("ha finalizado el viaje al planeta " +
+         * destinationPlanet[0]);
+         * // do {
+         * // } while (nave.equals("Millennium falcon") || (nave.equals("Discovery")) ||
+         * // (nave.equals("Red dwarf")));
+         * }
+         * 
+         * public void generarEvento(String[] selectedSpaceShip, int indice) {
+         * 
+         * System.out.println("Evento aleatorio para la nave " + selectedSpaceShip +
+         * ": " + EventoAleatorio);
+         * }
+         * 
+         * private static final String[] EventoAleatorio = {
+         * "navegación exitosa",
+         * "falla en el sistema",
+         * "encuentro con un asteroide",
+         * "avistamiento de una nueva estrella",
+         * "fuga de combustible",
+         * "mantenimiento programado",
+         * "comunicación con otra nave",
+         * "anomalía en el espacio-tiempo"
+         * };
+         * 
+         * private static final Random random = new Random();
+         * 
+         * public static String generarEvento() {
+         * int indice = random.nextInt(EventoAleatorio.length);
+         * return EventoAleatorio[indice];
+         * }
+         */
 }
