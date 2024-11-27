@@ -1,6 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
+
 public class App {
 
     static final String RED = "\u001B[31m";
