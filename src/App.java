@@ -433,7 +433,7 @@ public class App {
         var destinationPlanetDistance = Double.parseDouble(destinationPlanet[1]) * 1000000;
         var currentDistance = spaceShipVel * 24;
 
-        var porcentage = (currentDistance / destinationPlanetDistance) * 100;
+        var percentage = (currentDistance / destinationPlanetDistance) * 100;
         var temp = 0d;
         var days = 0;
 
