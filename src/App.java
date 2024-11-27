@@ -407,10 +407,8 @@ public class App {
     private static void calTravelProgress(String[] destinationPlanet, String[] selectedSpaceShip) {
 
         var nave = selectedSpaceShip[0];
-        // var selectedSpaceShip = "Discovery";
+
         // Duración del viaje
-        // == spaceShipsMaxVel[1] & spaceShipsMaxVel == ""
-        // String[] number = { "10 20 30 40 50 60 70 80 90 "};
 
         int number = random.nextInt(100);
         System.out.println("Comienza el viaje a " + destinationPlanet[0]);
