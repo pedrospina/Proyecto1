@@ -77,7 +77,7 @@ Este programa Java básico se encarga de:
       parámetros para recibir datos del usuario (por ejemplo, la distancia y
       velocidad) y retornarán resultados como la duración del viaje.
 
-[Ejecutar](https://onlinegdb.com/4N3hoX4Mb) :arrow_forward:
+[Ejecutar](https://onlinegdb.com/BlkyyYZGq) :arrow_forward:
 
 ## Tecnologías Utilizadas:
 
@@ -134,7 +134,7 @@ This simple Java program is designed to:
 
 - **Use of parameters and return values:** Methods will accept parameters to receive user data (such as distance and speed) and return results like trip duration.
 
-[Run]() :arrow_forward:
+[Run](https://onlinegdb.com/BlkyyYZGq) :arrow_forward:
 
 ## Technologies Used:
 

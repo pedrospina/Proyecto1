@@ -454,7 +454,7 @@ public class App {
                         + "- Spaceship: %4$s%n- N° Passengers: %5$s%n- Total distance traveled: %6$,.0f%n"
                         + "- Average travel velocity: %7$,.0f%n- Travel duration: %8$,.0f%n"
                         + "%1$s%9$s%2$s%n%10$sPlease press enter to continue.%2$s",
-                GREEN, RESET, destinationPlanet[0], selectedSpaceShip[0], selectedSpaceShip[2],
+                GREEN, RESET, destinationPlanet[0], selectedSpaceShip[0], selectedSpaceShip[3],
                 destinationPlanetDistance, spaceShipVel, travelDuration, fix, BLUE);
         input.nextLine();
 
