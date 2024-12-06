@@ -1,6 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
-
+/// Integrantes Pedro Daniel Ospina Arias y Yasser Daniel Ariza Barrios
 
 public class App {
 
